@@ -5,8 +5,9 @@
 
 @font-face {
   font-family: inter;
-  src: url(fonts/Inter-VariableFont_slnt\wght.ttf);
+  src: url(fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -16,16 +17,86 @@ body {
   background-color: #000000;
 }
 
-h1 {
-  font-family: a4speed;
-  color: #ffffff;
+header {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
+  align-items: center; /* Dikey ortalama */
+  justify-content: space-between; /* Elemanlar arasında boşluk bırakır */
+  padding: 5px; /* Header içindeki elemanlar için boşluk */
+  position: fixed;
+  width: 100%;
 }
 
-.container {
+.headercontainer {
   display: flex;
   align-items: center;
 }
 
-img {
-  margin-right: 1%
+#logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+#brand {
+  font-family: a4speed;
+  font-size: 25px;
+  color: #ffffff;
+}
+
+a {
+  font-family: a4speed;
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+a:hover {
+  color: #e9cd77;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+nav ul li:last-child {
+  margin-right: 65px;
+}
+
+.teamphotocontainer {
+  display: flex;
+  justify-content: center; /* İçeriği yatayda ortala */
+  align-items: center; /* İçeriği dikeyde ortala */
+}
+
+.teamphotocontainer .teamphoto {
+  margin-top: 50px;
+}
+
+.teamphoto img {
+  max-width: 80%; /* Fotoğraf maksimum genişlikte olsun */
+  max-height: auto; /* Fotoğraf maksimum yükseklikte olsun */
+  display: block; /* Görüntü blok elementi gibi davransın */
+  margin: 0 auto; /* Yatayda ortala */
+}
+
+.teamphoto {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  color: #ffffff;
+  font-family: a4speed;
+  text-align: center;
+
+}
+
+p {
+  color: #ffffff;
+  font-family: inter;
+  text-align: center;
 }
