@@ -19,6 +19,11 @@ body {
   font-family: inter, sans-serif;
 }
 
+/* WebKit tabanlı tarayıcılarda kaydırma çubuğunu gizleme */
+body::-webkit-scrollbar {
+  display: none;
+}
+
 header {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
@@ -109,6 +114,11 @@ a:hover {
   
   nav ul li {
     margin: 10px 0;
+  }
+
+  .content-title {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 
