@@ -25,7 +25,7 @@ body::-webkit-scrollbar {
 }
 
 header {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px);
   display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
   align-items: center; /* Dikey ortalama */
