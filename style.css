@@ -120,7 +120,7 @@ a:hover {
 }
 
 .teamphoto img {
-  max-width: 80%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 90%; /* Fotoğraf maksimum genişlikte olsun */
   display: block; /* Görüntü blok elementi gibi davransın */
   margin: 0 auto; /* Yatayda ortala */
 }
@@ -135,16 +135,18 @@ a:hover {
   font-family: a4speed;
   text-align: center;
   margin-top: 60px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 p {
   color: #ffffff;
   font-family: inter;
   text-align: center;
-  font-size: 16px;
-  margin-bottom: 40px;
+  font-size: 18px;
+  margin-bottom: 50px;
   margin-left: 15%;
   margin-right: 15%;
 }
@@ -161,6 +163,6 @@ button {
   display: block; /* Tam genişlikte olacak şekilde blok elementi olarak görüntüle */
   margin-left: auto; /* Butonu sağa daya */
   margin-right: auto; /* Butonu sola daya */
-  box-shadow: 0px 0px 8px #ffffff;
+  box-shadow: 0px 0px 10px #ffffff;
   margin-bottom: 100px;
 }
