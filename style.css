@@ -11,10 +11,12 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background-color: #000000;
+  font-family: inter, sans-serif;
 }
 
 header {
@@ -23,9 +25,11 @@ header {
   display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
   align-items: center; /* Dikey ortalama */
   justify-content: space-between; /* Elemanlar arasında boşluk bırakır */
-  padding: 5px; /* Header içindeki elemanlar için boşluk */
+  padding: 10px 40px; /* Header içindeki elemanlar için boşluk */
   position: fixed;
   width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 .headercontainer {
@@ -45,16 +49,21 @@ header {
   color: #ffffff;
 }
 
-a {
-  font-family: a4speed;
-  font-size: 14px;
-  color: #ffffff;
-  text-decoration: none;
-  margin-left: 40px;
+nav {
+  position: relative;
 }
 
-a:hover {
-  color: #e9cd77;
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  align-self: center; /* Flex container'da ortalar */
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
 }
 
 nav ul li {
@@ -63,22 +72,55 @@ nav ul li {
 }
 
 nav ul li:last-child {
-  margin-right: 65px;
+  margin-right: 0px;
+}
+
+a {
+  font-family: a4speed;
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e9cd77;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+  
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    text-align: center;
+  }
+  
+  nav ul.active {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 10px 0;
+  }
 }
 
 .teamphotocontainer {
   display: flex;
   justify-content: center; /* İçeriği yatayda ortala */
   align-items: center; /* İçeriği dikeyde ortala */
-}
-
-.teamphotocontainer .teamphoto {
-  margin-top: 50px;
+  margin-top: 100px; /* Header'dan boşluk bırak */
 }
 
 .teamphoto img {
   max-width: 80%; /* Fotoğraf maksimum genişlikte olsun */
-  max-height: auto; /* Fotoğraf maksimum yükseklikte olsun */
   display: block; /* Görüntü blok elementi gibi davransın */
   margin: 0 auto; /* Yatayda ortala */
 }
@@ -88,15 +130,37 @@ nav ul li:last-child {
   user-select: none;
 }
 
-h1 {
+.content-title {
   color: #ffffff;
   font-family: a4speed;
   text-align: center;
-
+  margin-top: 60px;
+  margin-bottom: 40px;
+  font-size: 40px;
 }
 
 p {
   color: #ffffff;
   font-family: inter;
   text-align: center;
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+button {
+  background-color: #000000; /* Arka plan rengi */
+  color: #ffffff; /* Yazı rengi */
+  font-family: inter; /* Font ailesi */
+  font-size: 16px; /* Yazı boyutu */
+  padding: 15px 70px; /* Buton içeriği ile kenarlar arasında boşluk */
+  border: 2px solid #ffffff; /* Beyaz dış kenarlık */
+  border-radius: 7px; /* Köşeleri yuvarlat */
+  cursor: pointer; /* Farenin üzerine gelince imleci el işareti yap */
+  display: block; /* Tam genişlikte olacak şekilde blok elementi olarak görüntüle */
+  margin-left: auto; /* Butonu sağa daya */
+  margin-right: auto; /* Butonu sola daya */
+  box-shadow: 0px 0px 8px #ffffff;
+  margin-bottom: 100px;
 }
