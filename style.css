@@ -25,12 +25,12 @@ body::-webkit-scrollbar {
 }
 
 header {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
   display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
   align-items: center; /* Dikey ortalama */
   justify-content: space-between; /* Elemanlar arasında boşluk bırakır */
-  padding: 10px 40px; /* Header içindeki elemanlar için boşluk */
+  padding: 5px 40px; /* Header içindeki elemanlar için boşluk */
   position: fixed;
   width: 100%;
   top: 0;
@@ -88,7 +88,7 @@ a {
 }
 
 a:hover {
-  color: #e9cd77;
+  color: #ffde7a;
 }
 
 /* Responsive */
@@ -172,5 +172,5 @@ button {
   margin-left: auto; /* Butonu sağa daya */
   margin-right: auto; /* Butonu sola daya */
   box-shadow: 0px 0px 10px #ffffff;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
