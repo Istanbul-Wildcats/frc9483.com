@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="img\logo.ico" type="image/x-icon" />
     <title>Team 9438</title>
   </head>
-
   <body>
     <header>
       <a href="">
@@ -19,36 +18,65 @@
       <nav>
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
         <ul id="menu">
-          <li><a href="/about">ABOUT</a></li>
-          <li><a href="/robots">ROBOTS</a></li>
-          <li><a href="/support-us">SUPPORT US</a></li>
+          <li><a href="/about" class="link-header">ABOUT</a></li>
+          <li><a href="/robots" class="link-header">ROBOTS</a></li>
+          <li><a href="/support-us" class="link-header">SUPPORT US</a></li>
         </ul>
       </nav>
     </header>
     <div class="teamphotocontainer">
       <div class="teamphoto">
-        <!-- <img src="img\team.png" alt="" ondragstart="return false;" oncontextmenu="return false;"/> -->
         <img src="img\team.png" alt="team" class="no-drag"/>
       </div>
     </div>
     <h1 class="content-title">TEAM 9483 ISTANBUL WILDCATS</h1>
     <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</p>
-    <button>MORE</button>
-
+    <a href="/about">
+      <button>MORE</button>
+    </a>
     <footer>
-      <div class="footercontainer">
-        <img src="img\logo.png" alt="" id="footer-logo" />
-        <h1 id="footer-brand">WILDCATS</h1>
+      <div class="footer-left">
+        <div class="footercontainer">
+          <img src="img\logo.png" alt="" id="footer-logo" />
+          <h1 id="footer-brand">WILDCATS</h1>
+        </div>
+        <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/frc9483/" target="_blank">
+            <img src="img\instagram.png" alt="instagram">
+          </a>
+          <a href="https://www.youtube.com/@frc9483" target="_blank">
+            <img src="img\youtube.png" alt="youtube">
+          </a>
+          <a href="https://www.thebluealliance.com/team/9483" target="_blank">
+            <img src="img\tba.png" alt="tba">
+          </a>
+          <a href="https://www.statbotics.io/team/9483" target="_blank">
+            <img src="img\statbotics.png" alt="statbotics">
+          </a>
+        </div>
       </div>
-      <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-      <div class="social-icons">
-        <img src="img\instagram.png" alt="instagram">
-        <img src="img\youtube.png" alt="youtube">
-        <img src="img\tba.png" alt="tba">
-        <img src="img\statbotics.png" alt="statbotics">
+      <div class="footer-right">
+        <div class="pages">
+          <h2>Pages</h2>
+          <a href="" class="pages-footer">Home</a>
+          <a href="/about" class="pages-footer">About</a>
+          <a href="/robots" class="pages-footer">Robots</a>
+          <a href="/support-us" class="pages-footer">Support Us</a>
+        </div>
+        <div class="contact">
+          <h2>Contact</h2>
+          <div class="contact-footer">
+            <img src="img\email.png" alt="mail" class="no-drag">
+            <p class="email">team9483@gmail.com</p>
+          </div>
+          <div class="contact-footer">
+            <img src="img\location.png" alt="location" class="no-drag">
+            <p class="location-caption">Istanubl, Turkey</p>
+          </div>
+        </div>
       </div>
     </footer>
-    
     <script src="index.js"></script>
   </body>
 </html>
