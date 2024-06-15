@@ -415,6 +415,7 @@ footer {
   footer {
     flex-direction: column; /* Footer içeriğini dikey hizala */
     align-items: center; /* İçeriği yatayda ortala */
+    padding: 5%;
   }
 
   .footer-text {
@@ -425,7 +426,9 @@ footer {
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    width: 280px;
+    /* width: 280px; */
+    /* max-width: 400px; */
+    width: auto;
     margin-top: 16px;
     margin-bottom: 16px;
   }
@@ -433,6 +436,10 @@ footer {
   .social-icons {
     margin-bottom: 20px;
   } 
+
+  .footer-right {
+    align-self: flex-start;
+  }
 
   .contact {
     display: flex;
@@ -448,6 +455,7 @@ footer {
     margin-bottom: 12px;
     display: flex;
     white-space: nowrap
+    
   }
   
   .contact-footer img {
