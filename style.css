@@ -156,7 +156,7 @@ button {
 footer {
   padding: 40px 100px;
   display: flex;
-  justify-content: space-between; /* Div'ler arasında boşluk bırakır */
+  justify-content: space-between;
   /* align-items: center; */ /* İsteğe bağlı: dikey hizalama */
   margin-top: 240px;
 }
@@ -345,6 +345,22 @@ footer {
   margin-right: 15%;
 }
 
+.robots-content-linked {
+  color: #ffffff;
+  font-family: inter;
+  text-align: center;
+  font-size: 18px;
+  width: 70%; 
+  margin: 0 auto;
+}
+
+.robots-content-linked a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
 .banner-container {
   display: flex;
   justify-content: center; /* İçeriği yatayda ortala */
@@ -502,5 +518,15 @@ footer {
     margin-bottom: 20px;
     margin-left: 5%;
     margin-right: 5%;
+  }
+
+  .robots-content-linked {
+    color: #ffffff;
+    font-family: inter;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 90%; 
+    margin: 0 auto;
   }
 }
