@@ -34,7 +34,7 @@ header {
   display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
   align-items: center; /* Dikey ortalama */
   justify-content: space-between;
-  padding: 8px 40px;
+  padding: 8px 20px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -161,7 +161,6 @@ footer {
   padding: 40px 100px;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */ /* İsteğe bağlı: dikey hizalama */
   margin-top: 240px;
 }
 
