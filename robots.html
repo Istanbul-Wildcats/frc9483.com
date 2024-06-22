@@ -10,21 +10,29 @@
     <body>
         <header>
             <a href="/">
-                <div class="headercontainer">
-                    <img src="img\logo.png" alt="logo" id="logo" />
-                    <h1 id="brand">9483</h1>
-                </div>
+              <div class="headercontainer">
+                <img src="img\logo.png" alt="logo" id="logo" />
+                <h1 id="brand">9483</h1>
+              </div>
             </a>
             <nav>
-                <div class="menu-icon" onclick="toggleMenu()">☰</div>
-                <ul id="menu">
-                    <li><a href="/" class="link-header">HOME</a></li>
+              <div class="off-screen-menu">
+                <ul>
+                  <li><a href="/" class="link-header">HOME</a></li>
                     <li><a href="/about" class="link-header">ABOUT</a></li>
                     <li><a href="/robots" class="link-header">ROBOTS</a></li>
                     <li><a href="/support-us" class="link-header">SUPPORT US</a></li>
                 </ul>
+              </div>
+              <nav>
+                <div class="ham-menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </nav>
             </nav>
-        </header>
+          </header>
         <div class="snapfire-container">
             <div class="snapfire-photo">
               <img src="img\snapfire.png" alt="snapfire" class="no-drag"/>
