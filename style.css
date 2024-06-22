@@ -27,8 +27,8 @@ body::-webkit-scrollbar {
 header {
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
-  display: flex; /* Flexbox kullanarak header içindeki elemanları yatay hizalar */
-  align-items: center; /* Dikey ortalama */
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 8px 20px;
   position: fixed;
@@ -98,15 +98,15 @@ a {
 
 .teamphotocontainer {
   display: flex;
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
 }
 
 .teamphoto img {
-  max-width: 80%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 80%;
   display: block;
-  margin: 0 auto; /* Yatayda ortala */
+  margin: 0 auto;
 }
 
 .teamphoto {
@@ -285,15 +285,15 @@ footer {
 
 .about-bottom-img-container {
   display: flex;
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
 }
 
 .about-bottom-img img {
-  max-width: 90%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 90%;
   display: block;
-  margin: 0 auto; /* Yatayda ortala */
+  margin: 0 auto;
 }
 
 .about-bottom-img {
@@ -304,15 +304,15 @@ footer {
 /* ROBOTS */
 .snapfire-container {
   display: flex;
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
 }
 
 .snapfire-photo img {
-  max-width: 60%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 60%;
   display: block;
-  margin: 0 auto; /* Yatayda ortala */
+  margin: 0 auto;
 }
 
 .snapfire-photo {
@@ -322,15 +322,15 @@ footer {
 
 .line-container {
   display: flex;
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
 }
 
 .linephoto img {
-  max-width: 90%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 90%;
   display: block;
-  margin: 0 auto; /* Yatayda ortala */
+  margin: 0 auto;
 }
 
 .linephoto {
@@ -366,13 +366,13 @@ footer {
 
 .banner-container {
   display: flex;
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  justify-content: center;
+  align-items: center;
   margin-top: 60px;
 }
 
 .banner-photo img {
-  max-width: 25%; /* Fotoğraf maksimum genişlikte olsun */
+  max-width: 25%;
   display: block;
 }
 
@@ -381,7 +381,7 @@ footer {
   user-select: none;
   display: flex;
   align-items: center;
-  justify-content: center; /* İçeriği yatayda ortala */
+  justify-content: center;
   gap: 4%;
 }
 
@@ -512,7 +512,7 @@ button[type="submit"]:hover {
 }
 
 .collapsible:after {
-  content: '\25B3'; /* Yukarı ok ikonu */
+  content: '\25B3';
   color: white;
   font-weight: 200;
   float: right;
@@ -520,34 +520,34 @@ button[type="submit"]:hover {
 }
 
 .active:after {
-  content: "\25BD"; /* Aşağı ok ikonu */
+  content: "\25BD";
 }
 
 .collapsible-content {
-  font-family: 'Inter'; /* Yazı tipini 'inter' yapar */
-  font-size: 16px; /* Yazı boyutunu 16 piksel yapar */
+  font-family: 'Inter';
+  font-size: 16px;
   color: #eeeeee;
-  text-align: left; /* Metni sola hizalar */
-  max-height: 0; /* İçeriğin başlangıçta görünmemesi için maksimum yüksekliğini 0 yapar */
-  overflow: hidden; /* Taşan içeriği gizler */
-  transition: max-height 0.8s ease-out, opacity 0.6s ease-out, visibility 0.3s; /* Yükseklik değişiminde geçiş animasyonu ekler, 0.2 saniye sürer */
-  background-color: #000000; /* Arka plan rengini siyah yapar */
-  border-radius: 0 0 4px 4px; /* İçeriğin köşelerini butonun alt köşeleri ile eşleşecek şekilde yuvarlar */
-  padding: 18px; /* İçeriğin tüm kenarlarına 18 piksel boşluk ekler */
-  width: 70%; /* İçeriğin genişliğini %100 eksi toplam padding yapar (18px sağ ve 18px sol toplam 36px) */
-  box-sizing: border-box; /* Padding ve border genişliğe dahil edilir */
-  border-left: 1px solid #ffffff; /* Sol kenarlık ekler */
-  border-right: 1px solid #ffffff; /* Sağ kenarlık ekler */
-  border-bottom: 1px solid #ffffff; /* Alt kenarlık ekler */
-  margin: 0 auto; /* Öğeyi yatayda ortalar */
-  opacity: 0; /* Opaklık başlangıçta 0 */
-  visibility: hidden; /* Görünürlük başlangıçta gizli */
+  text-align: left;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-out, opacity 0.6s ease-out, visibility 0.3s;
+  background-color: #000000;
+  border-radius: 0 0 4px 4px;
+  padding: 18px;
+  width: 70%;
+  box-sizing: border-box;
+  border-left: 1px solid #ffffff; 
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  margin: 0 auto;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .collapsible-content.show {
-  max-height: 1000px; /* İçeriğin açıldığında maksimum yüksekliği belirlenir */
-  opacity: 1; /* Opaklık görünür */
-  visibility: visible; /* Görünürlük açılır */
+  max-height: 1000px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .collapsible-content h2 {
@@ -556,8 +556,8 @@ button[type="submit"]:hover {
 }
 
 .bolden {
-  font-weight: bold; /* Kalın yazı stili */
-  color: #ffffff; /* Yazı rengini koyulaştır */
+  font-weight: bold;
+  color: #ffffff;
 }
 
 
@@ -569,9 +569,6 @@ button[type="submit"]:hover {
   a {
     color: #ffffff;
   }
-  a:visited {
-    color: #ffde7a;
-  }
   a:hover {
     color: #dddddd;
   }
@@ -580,7 +577,7 @@ button[type="submit"]:hover {
     background-color: rgba(0, 0, 0, 0.9 );
     height: 100vh;
     width: 100%;
-    max-width: 160px;
+    max-width: 200px;
     position: fixed;
     top: 0;
     right: -450px;
@@ -616,10 +613,10 @@ button[type="submit"]:hover {
   }
   
   .off-screen-menu.active ul li:first-child {
-    margin-top: -280px;
+    margin-top: -320px;
   }
   .off-screen-menu ul li:first-child {
-    margin-top: -280px;
+    margin-top: -320px;
   }
   
  
@@ -669,9 +666,9 @@ button[type="submit"]:hover {
   }
 
   .teamphoto img {
-    min-width: 100%; /* Fotoğraf maksimum genişlikte olsun */
+    min-width: 100%;
     display: block;
-    margin: 0 auto; /* Yatayda ortala */
+    margin: 0 auto;
   }
 
   .content-title {
@@ -690,8 +687,8 @@ button[type="submit"]:hover {
   }
 
   footer {
-    flex-direction: column; /* Footer içeriğini dikey hizala */
-    align-items: center; /* İçeriği yatayda ortala */
+    flex-direction: column;
+    align-items: center;
     padding: 5%;
   }
 
@@ -703,8 +700,6 @@ button[type="submit"]:hover {
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    /* width: 280px; */
-    /* max-width: 400px; */
     width: auto;
     margin-top: 16px;
     margin-bottom: 16px;
@@ -725,7 +720,7 @@ button[type="submit"]:hover {
   }
 
   .pages, .contact h2 {
-    display: none; /* Mobilde gizle */
+    display: none;
   } 
 
   .contact-footer {
@@ -766,9 +761,9 @@ button[type="submit"]:hover {
 
   /* ROBOTS */
   .snapfire-photo img {
-    max-width: 80%; /* Fotoğraf maksimum genişlikte olsun */
+    max-width: 80%;
     display: block;
-    margin: 0 auto; /* Yatayda ortala */
+    margin: 0 auto;
   }
 
   .robots-content {
@@ -798,16 +793,16 @@ button[type="submit"]:hover {
   }
 
   .collapsible {
-    width: 94%; /* Ekranın genişliğine göre esneklik kazandırır */
-    margin: 0 auto; /* Yatayda ortalar */
+    width: 94%;
+    margin: 0 auto;
   }
 
   .collapsible-content {
-    font-family: 'Inter'; /* Yazı tipini 'inter' yapar */
-    font-size: 16px; /* Yazı boyutunu 16 piksel yapar */
+    font-family: 'Inter';
+    font-size: 16px;
     color: #dddddd;
-    text-align: left; /* Metni sola hizalar */
-    width: 94%; /* Ekranın genişliğine göre esneklik kazandırır */
-    margin: 0 auto; /* Yatayda ortalar */
+    text-align: left;
+    width: 94%;
+    margin: 0 auto;
   }
 }
