@@ -41,46 +41,16 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-const translations = {
-  en: {
-      home: "HOME",
-      about: "ABOUT",
-      robots: "ROBOTS",
-      supportUs: "SUPPORT US",
-      teamTitle: "TEAM 9483 ISTANBUL WILDCATS",
-      teamDescription: "Istanbul Wildcats is a robotics team consisting of students from all over the world and mentors studying at distinguished universities in Turkiye to share their interest and focus on robotics.",
-      more: "MORE",
-      footerBrand: "WILDCATS",
-      footerText: "To get to know our team better, you can follow us on social media and review our standings and matches in the FRC. ©Team 9483 Istanbul Wildcats 2024",
-      pagesTitle: "Pages",
-      contactTitle: "Contact"
-  },
-  tr: {
-      home: "ANASAYFA",
-      about: "HAKKIMIZDA",
-      robots: "ROBOTLAR",
-      supportUs: "BİZE DESTEK OL",
-      teamTitle: "TEAM 9483 İSTANBUL WILDCATS",
-      teamDescription: "İstanbul Wildcats, dünya genelinden öğrenciler ve Türkiye'deki seçkin üniversitelerde öğrenim gören mentörlerden oluşan bir robotik takımıdır. İlgi alanlarını ve robotik konusundaki odaklarını paylaşmak için bir araya gelirler.",
-      more: "DAHA FAZLA",
-      footerBrand: "WILDCATS",
-      footerText: "Takımımızı daha yakından tanımak için sosyal medya hesaplarımızı takip edebilir ve FRC'deki derecelerimizi ve maçlarımızı inceleyebilirsiniz. ©Team 9483 İstanbul Wildcats 2024",
-      pagesTitle: "Sayfalar",
-      contactTitle: "İletişim"
-  }
-};
-
+////////////////////////////////////////////////////
 function setLanguage(language) {
-  document.querySelectorAll('[data-translate-key]').forEach(element => {
-      const key = element.getAttribute('data-translate-key');
-      if (translations[language] && translations[language][key]) {
-          element.textContent = translations[language][key];
-      }
+  document.querySelectorAll('[data-en]').forEach(element => {
+      element.textContent = element.getAttribute('data-' + language);
   });
 }
 
-// URL'den dil bilgisi al
-const path = window.location.pathname;
-const language = path.startsWith('/tr/') ? 'tr' : 'en';
-
-setLanguage(language);
+// Tarayıcı dilini kontrol et
+document.addEventListener('DOMContentLoaded', () => {
+  const userLang = navigator.language || navigator.userLanguage;
+  const language = userLang.startsWith('tr') ? 'tr' : 'en';
+  setLanguage(language);
+});
