@@ -273,6 +273,10 @@ footer {
   margin-right: 15%;
 }
 
+.paragraph {
+  margin-bottom: 20px;
+}
+
 .about-content {
   color: #ffffff;
   font-family: inter;
