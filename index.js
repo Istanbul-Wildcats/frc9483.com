@@ -73,7 +73,9 @@ const translations = {
 function setLanguage(language) {
   document.querySelectorAll('[data-translate-key]').forEach(element => {
       const key = element.getAttribute('data-translate-key');
-      element.textContent = translations[language][key];
+      if (translations[language] && translations[language][key]) {
+          element.textContent = translations[language][key];
+      }
   });
 }
 
