@@ -52,7 +52,7 @@ function setContent(language) {
     en: `
       <p>
         Our team became <span class="bolden">champion</span> in the competitions 
-        held in Turkey in its <span class="bolden">first year</span> and was entitled 
+        held in Turkiye in its <span class="bolden">first year</span> and was entitled 
         to be represented in the market. This year, our world champion team in Houston 
         competed with teams sponsored by big stars such as NASA and Google and became 
         the <span class="bolden">Division champion</span>.<br /><br /> At the same 
@@ -102,10 +102,31 @@ function setContent(language) {
   document.getElementById('content').innerHTML = content[language] || content.en;
 }
 
-// Tarayıcı dilini kontrol et ve içerikleri güncelle
 document.addEventListener('DOMContentLoaded', () => {
   const userLang = navigator.language || navigator.userLanguage;
   const language = userLang.startsWith('tr') ? 'tr' : 'en';
   setLanguage(language);
   setContent(language);
+});
+
+//FORM
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // engelle ama işle
+
+      var formData = new FormData(this);
+
+      fetch('contact.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+          document.getElementById('form-response').innerHTML = '<p class="success-message">Thank you for contacting us!</p>';
+          document.getElementById('contact-form').reset();
+      })
+      .catch(error => {
+          document.getElementById('form-response').innerHTML = '<p class="error-message">Sorry, there was an error sending your message.</p>';
+      });
+  });
 });
