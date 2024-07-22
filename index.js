@@ -108,25 +108,3 @@ document.addEventListener('DOMContentLoaded', () => {
   setLanguage(language);
   setContent(language);
 });
-
-//FORM
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // engelle ama işle
-
-      var formData = new FormData(this);
-
-      fetch('contact.php', {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById('form-response').innerHTML = '<p class="success-message">Thank you for contacting us!</p>';
-          document.getElementById('contact-form').reset();
-      })
-      .catch(error => {
-          document.getElementById('form-response').innerHTML = '<p class="error-message">Sorry, there was an error sending your message.</p>';
-      });
-  });
-});
