@@ -20,17 +20,17 @@ images.forEach((img) => {
   img.addEventListener("mousedown", (event) => event.preventDefault());
 });
 
-document.addEventListener('touchstart', function(event) {
+document.addEventListener('touchstart', function (event) {
   if (event.touches.length > 1) {
-      event.preventDefault();
+    event.preventDefault();
   }
-}, { passive: false });   
+}, { passive: false });
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.classList.contains("show")) {

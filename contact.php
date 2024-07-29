@@ -154,13 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
         <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
     </svg>
-    <p class="success" data-en="Contact Form Submitted Successfully!" data-tr="İleitşim Formu Başarıyla Gönderilldi!">
-    </p>
-    <p class="success-content" data-en="We will get back to you as soon as possible. Thank you for your support." data-tr="En kısa sürede sizlere geri dönüş yapacağız. Bizi desteklediğiniz için teşekkür ederiz.">
-    </p>
+    <p class="success" data-en="Contact Form Submitted Successfully!" data-tr="İleitşim Formu Başarıyla Gönderilldi!"></p>
+    <p class="success-content" data-en="We will get back to you as soon as possible. Thank you for your support." data-tr="En kısa sürede sizlere geri dönüş yapacağız. Bizi desteklediğiniz için teşekkür ederiz."></p>
     <div class="succes-home">
-        <p><a href="/" data-en="Return to Home" data-tr="Ana Sayfaya Dön"></a>
-        </p>
+        <p><a href="/" data-en="Return to Home" data-tr="Ana Sayfaya Dön"></a></p>
     </div>
 
     <script>
@@ -177,4 +174,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 </body>
+
 </html>
