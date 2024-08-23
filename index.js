@@ -78,19 +78,19 @@ function setContent(language) {
     tr: `
       <p>Takımımız, <span class="bolden">ilk senesinde</span> Türkiye'de düzenlenen 
       yarışmalarda <span class="bolden">şampiyon</span> olmuş ve ülkemizi yurtdışında 
-      temsil etmeye hak kazanmıştır. Bu sene Houston'daki Dünya şampiyonasında 
+      temsil etmeye hak kazanmıştır. Bu sene Houston'daki Dünya Şampiyonasında 
       takımımız, NASA ve Google gibi büyük şirketlerin sponsor 
       olduğu takımlar ile yarışmış, <span class="bolden">Division şampiyonu</span> 
-      olmuştur. <br><br>Aynı zamanda Einstein adı verilen <span class="bolden">Dünya 
-      finallerinde robot süren ilk Türk takım</span> olup <span class="bolden">Dünya 
+      olmuştur. <br><br>Aynı zamanda Einstein adı verilen <span class="bolden">dünya 
+      finallerinde robot süren ilk Türk takım</span> olup <span class="bolden">dünya 
       5.si</span> olduk. Robot maçlarında gösterdiğimiz başarılar ile FRC robotlarının 
       yapay zeka yardımı ile performanslarına göre sıralandığı en güvenilir sistem olan 
-      Statbotics’te, <span class="bolden">genel performans alanında Dünya 10.luğuna ve 
-      otonom alanında Dünya 4.lüğüne yükseldik.</span> Önümüzdeki yıllarda performansımız 
+      Statbotics’te, <span class="bolden">genel performans alanında dünya 10.luğuna ve 
+      otonom alanında dünya 4.lüğüne yükseldik.</span> Önümüzdeki yıllarda performansımız 
       ile daha üst sıralara yükselmeyi umuyoruz. <br><br>Her sene kendimizi daha da ileri 
       taşıyarak kazandığımız tecrübelerle <span class="bolden">daha başarılı</span> 
       robotlar üreteceğiz. Önümüzdeki sezonlarda da başarılarımızı <span class="bolden">
-      Dünya şampiyonluğu</span> ile taçlandırmak istiyoruz. <br><br><h2>Bunun için sizin 
+      dünya şampiyonluğu</span> ile taçlandırmak istiyoruz. <br><br><h2>Bunun için sizin 
       desteğinize ihtiyacımız var. </h2><br>Dünya geneli bir yarışma olan FRC’ye katılım 
       ücreti ve robot üretim maliyeti bizim karşılayabileceğimiz düzeyin oldukça üstünde. 
       Takım masraflarının bir kısmını karşılamanız için sizden destek bekliyoruz. Ülkemizi 
