@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="support-us-form">
-    <form id="contact-form" action="contact.html" method="POST">
+    <form id="contact-form">
       <div class="form-row">
         <div class="form-group">
           <label for="name" class="dynamic-label" data-en="Name:" data-tr="İsim:"></label>
@@ -124,7 +124,37 @@
       </div>
     </div>
   </footer>
-  <script src="index.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      const accessKey = "5fe2a988-7980-4855-8e12-c2602ea094e9";
+      const data = {
+        access_key: accessKey,
+        name: document.getElementById('name').value,
+        surname: document.getElementById('surname').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+      };
+  
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        // Başarılı gönderimden sonra yapılacak işlemler
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
 </body>
 
 </html>
