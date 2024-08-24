@@ -138,17 +138,49 @@
     </div>
 
     <script>
+        function submitForm(event) {
+            event.preventDefault();
+
+            const accessKey = "5fe2a988-7980-4855-8e12-c2602ea094e9";
+            const data = {
+                access_key: accessKey,
+                name: document.querySelector('input[name="name"]').value,
+                surname: document.querySelector('input[name="surname"]').value,
+                email: document.querySelector('input[name="email"]').value,
+                phone: document.querySelector('input[name="phone"]').value,
+                message: document.querySelector('textarea[name="message"]').value
+            };
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // Başarılı gönderimden sonra yapılacak işlemler
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
         function setLanguage(language) {
             document.querySelectorAll('[data-en]').forEach(element => {
                 element.textContent = element.getAttribute('data-' + language);
             });
         }
+
         document.addEventListener('DOMContentLoaded', () => {
             const userLang = navigator.language || navigator.userLanguage;
             const language = userLang.startsWith('tr') ? 'tr' : 'en';
             setLanguage(language);
-            setContent(language);
         });
+
+        document.querySelector('form').addEventListener('submit', submitForm);
     </script>
 </body>
 
