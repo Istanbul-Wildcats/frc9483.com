@@ -189,7 +189,6 @@ footer {
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  /* width: 400px; */
   width: 60%;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -565,36 +564,6 @@ button[type="submit"]:hover {
   color: #ffffff;
 }
 
-/* SPONSORS */
-.sponsors-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.sponsors-container-lower {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0px;
-}
-
-.sponsors-photo img {
-  max-width: 40%;
-  display: block;
-  margin: 7%;
-}
-
-.sponsors-photo {
-  -webkit-user-select: none;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4%;
-}
-
 
 @media (max-width: 768px) {
   .menu-icon {
@@ -852,7 +821,5 @@ button[type="submit"]:hover {
     width: 94%;
     margin: 0 auto;
   }
-
-  /* SPONSORS */
 
 }
