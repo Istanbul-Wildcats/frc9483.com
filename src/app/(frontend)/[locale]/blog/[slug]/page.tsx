@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 
 import { Pic } from '@/components/site/Pic'
 import { RichBody } from '@/components/site/RichBody'
-import { isLocale } from '@/i18n/config'
+import { isLocale, locales } from '@/i18n/config'
 import { formatDate } from '@/lib/format'
 import { global, list } from '@/lib/payload'
 import { abs, buildMetadata, SITE_URL } from '@/lib/seo'
@@ -23,6 +23,11 @@ async function load(locale: string, slug: string) {
     description: p.seo?.description || p.excerpt || snippet(lexicalText(p.content)),
     image: p.seo?.image || p.cover,
   }
+}
+
+export async function generateStaticParams() {
+  const perLocale = await Promise.all(locales.map(async (locale) => (await list('posts', locale)).map((p) => ({ locale, slug: p.slug }))))
+  return perLocale.flat()
 }
 
 export async function generateMetadata({ params }: Props) {

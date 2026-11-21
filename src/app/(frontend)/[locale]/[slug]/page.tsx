@@ -2,11 +2,17 @@ import { notFound } from 'next/navigation'
 
 import { PageHeading } from '@/components/site/PageHeading'
 import { RichBody } from '@/components/site/RichBody'
-import { isLocale } from '@/i18n/config'
-import { getPage } from '@/lib/payload'
+import { isLocale, locales, pageSlugs } from '@/i18n/config'
+import { getPage, payload } from '@/lib/payload'
 import { pageMetadata } from '@/lib/seo'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
+
+export async function generateStaticParams() {
+  const { docs } = await (await payload()).find({ collection: 'pages', limit: 100, depth: 0, pagination: false })
+  const custom = docs.map((d) => d.slug).filter((slug) => !(pageSlugs as readonly string[]).includes(slug))
+  return locales.flatMap((locale) => custom.map((slug) => ({ locale, slug })))
+}
 
 /** Any page created in Payload (Pages collection) that has no dedicated route renders here. */
 export async function generateMetadata({ params }: Props) {

@@ -8,6 +8,9 @@ const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
   images: {
+    // optimized variants stay cached for a year (uploads get new file names, so nothing goes stale)
+    minimumCacheTTL: 60 * 60 * 24 * 365,
+    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
     localPatterns: [
       {
         pathname: '/api/media/file/**',

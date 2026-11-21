@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 import { ContactMessages } from './collections/ContactMessages'
 import { GalleryImages } from './collections/GalleryImages'
 import { Media } from './collections/Media'
+import { migrations } from './migrations'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Products } from './collections/Products'
@@ -53,7 +54,8 @@ export default buildConfig({
     // Uploads go to Vercel Blob in production (Vercel's disk is read-only); locally they stay in /media.
     vercelBlobStorage({
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: { media: true },
+      // media URLs point straight at the Blob CDN instead of streaming every file through a serverless function
+      collections: { media: { disablePayloadAccessControl: true } },
       token: process.env.BLOB_READ_WRITE_TOKEN ?? '',
       clientUploads: true, // browser uploads straight to Blob, so photos over Vercel's 4.5 MB body limit work
     }),
@@ -77,7 +79,12 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
+      // Supabase pooler: every serverless instance keeps only a few connections open
+      max: process.env.VERCEL ? 3 : 10,
     },
+    // Schema changes ship as migrations (src/migrations) and run automatically in production.
+    // After changing a collection/global: `pnpm payload migrate:create <name>`, commit the files.
+    prodMigrations: migrations,
   }),
   localization: {
     locales: [

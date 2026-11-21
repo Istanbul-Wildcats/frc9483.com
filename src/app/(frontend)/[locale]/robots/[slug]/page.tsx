@@ -6,10 +6,16 @@ import { AwardBanners } from '@/components/site/AwardBanners'
 import { Pic } from '@/components/site/Pic'
 import { SeasonTable } from '@/components/site/SeasonTable'
 import { VideoStrip } from '@/components/site/VideoStrip'
-import { isLocale } from '@/i18n/config'
+import { isLocale, locales } from '@/i18n/config'
 import { getT, list } from '@/lib/payload'
 import { buildMetadata } from '@/lib/seo'
 import { youtubeId } from '@/lib/youtube'
+
+// Pre-render every robot in every language so navigating to one is instant (no server work per click).
+export async function generateStaticParams() {
+  const perLocale = await Promise.all(locales.map(async (locale) => (await list('robots', locale)).map((r) => ({ locale, slug: r.slug }))))
+  return perLocale.flat()
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params
