@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { en } from '@payloadcms/translations/languages/en'
 import { tr } from '@payloadcms/translations/languages/tr'
 import path from 'path'
@@ -48,6 +49,15 @@ export default buildConfig({
   ],
   globals: [SiteSettings, UiText, Home, About, Navigation, Resources].map(withGlobalRevalidation),
   editor: lexicalEditor(),
+  plugins: [
+    // Uploads go to Vercel Blob in production (Vercel's disk is read-only); locally they stay in /media.
+    vercelBlobStorage({
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      collections: { media: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN ?? '',
+      clientUploads: true, // browser uploads straight to Blob, so photos over Vercel's 4.5 MB body limit work
+    }),
+  ],
   // No mail provider is connected (contact messages are stored in the panel). This keeps Payload's
   // default behaviour of printing outgoing mail to the console, without the startup warning.
   email: ({ payload }) => ({
