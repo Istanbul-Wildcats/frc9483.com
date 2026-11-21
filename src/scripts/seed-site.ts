@@ -161,7 +161,7 @@ const run = async () => {
   // ---- Robots (awards: frc-events.firstinspires.org/team/9483) ----
   const robots = [
     {
-      videos: [['PG1N4AD15CM', 'Temiz robot videosu · Johnson Q35', 'Clean robot video · Johnson Q35'], ['tOYFbRIJ8CA', 'Bump + HP otonomu', 'Bump + HP auto'], ['t_CEsoxMZCQ', 'Robonauts antrenman maçı', 'Robonauts practice match']], slug: 'enigma', name: 'Enigma', season: 2026, game: 'Rebuilt', image: img.enigma, seasonPhoto: img.p136,
+      videos: [['PG1N4AD15CM', 'Temiz robot videosu · Johnson Q35', 'Clean robot video · Johnson Q35'], ['tOYFbRIJ8CA', 'Bump + HP otonomu', 'Bump + HP auto'], ['t_CEsoxMZCQ', 'Robonauts Open House', 'Robonauts Open House']], slug: 'enigma', name: 'Enigma', season: 2026, game: 'Rebuilt', image: img.enigma, seasonPhoto: img.p136,
       awards: [
         ['Istanbul Regional', 'Istanbul Regional', 'FIRST Leadership Award Finalist', 'Liderlik Ödülü Finalisti'],
         ['Istanbul Regional', 'Istanbul Regional', 'Industrial Design Award', 'Endüstriyel Tasarım Ödülü'],
