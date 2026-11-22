@@ -3,7 +3,8 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 export const buttonVariants = cva(
-  'inline-flex items-center gap-3 rounded-pill border transition-[color,background-color,transform] duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
+  // pb-1: Inter's metrics sit cap-heavy labels ~2px low of the flex-centered box — optical compensation
+  'inline-flex items-center gap-3 rounded-pill border pb-1 font-medium transition-[color,background-color,transform] duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
   {
     variants: {
       variant: {

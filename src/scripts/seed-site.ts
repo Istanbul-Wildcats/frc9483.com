@@ -304,10 +304,12 @@ const run = async () => {
 
   await upsert(payload, { global: 'resources' }, () => ({
     links: [
-      { label: 'FIRST', url: 'https://www.firstinspires.org' },
-      { label: 'The Blue Alliance', url: 'https://www.thebluealliance.com/team/9483' },
-      { label: 'FRC Events · 9483', url: 'https://frc-events.firstinspires.org/team/9483' },
-      { label: 'Statbotics', url: 'https://www.statbotics.io/team/9483' },
+      { label: 'FIRST', url: 'https://www.firstinspires.org', description: l === 'tr' ? "FRC'i düzenleyen organizasyon." : 'The organization that runs FRC.' },
+      { label: 'The Blue Alliance', url: 'https://www.thebluealliance.com/team/9483', description: l === 'tr' ? "Takımın maç, sonuç ve ödül arşivi." : "The team's match, result and award archive." },
+      { label: 'FRC Events · 9483', url: 'https://frc-events.firstinspires.org/team/9483', description: l === 'tr' ? 'Resmi etkinlik sonuçları.' : 'Official event results.' },
+      { label: 'Statbotics', url: 'https://www.statbotics.io/team/9483', description: l === 'tr' ? 'Takım performans analizi (EPA, sıralamalar).' : 'Team performance analytics (EPA, rankings).' },
+      { label: '9483 Scouting Saga: From Vibes and Paper to Predictive Data', url: 'https://www.chiefdelphi.com/t/9483-scouting-saga-from-vibes-and-paper-to-predictive-data/521985', description: l === 'tr' ? '2026 izcilik sistemimiz: sezgidan tahmine dayalı veriye.' : 'Our 2026 scouting system: from vibes and paper to predictive data.' },
+      { label: '2023 Off-Season Build Blog', url: 'https://www.chiefdelphi.com/t/besiktas-rsports-9483-2023-off-season-build-blog/440340', description: l === 'tr' ? 'Beşiktaş Rsports dönemindeki 2023 sezon dışı build blogu.' : 'The 2023 off-season build blog from the Beşiktaş Rsports era.' },
     ],
   }))
 

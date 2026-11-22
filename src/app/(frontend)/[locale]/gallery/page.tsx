@@ -14,7 +14,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ locale
   if (!isLocale(l)) return null
   const [d, pg, docs] = await Promise.all([getT(l), getPage('gallery', l), list('gallery-images', l, { sort: 'order' })])
   const items = docs.flatMap((g): GalleryItem[] =>
-    typeof g.image === 'object' && g.image.url ? [{ src: g.image.url, alt: g.image.alt }] : [],
+    typeof g.image === 'object' && g.image.url ? [{ src: g.image.url, alt: g.image.alt, caption: g.caption || g.image.alt }] : [],
   )
   return (
     <>

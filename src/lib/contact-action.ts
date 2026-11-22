@@ -28,9 +28,9 @@ export async function sendContact(_prev: ContactState, form: FormData): Promise<
   const locale = isLocale(raw) ? raw : 'tr'
   const d = await getT(locale)
 
-  // Spam traps: hidden field must stay empty, and a human takes more than 2s to fill the form.
-  const age = Date.now() - Number(form.get('ts') ?? 0)
-  if (String(form.get('website') ?? '') !== '' || !Number.isFinite(age) || age < 2000) return { status: 'ok' }
+  // Spam trap: the hidden field must stay empty. Timing-based bots are caught by the limiter below;
+  // autofilled (under 2s) real submissions are accepted rather than silently dropped with a fake success.
+  if (String(form.get('website') ?? '') !== '') return { status: 'ok' }
 
   const name = String(form.get('name') ?? '').trim()
   const email = String(form.get('email') ?? '').trim()

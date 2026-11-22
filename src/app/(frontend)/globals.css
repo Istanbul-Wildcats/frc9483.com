@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: var(--font-anta), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-anta), system-ui, sans-serif;
   --color-background: #000000;
   --color-foreground: #ebeff9;
   --color-white: #ffffff;
@@ -14,7 +15,7 @@
   --radius-pill: 500px;
   --animate-rise: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-fade: fade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  --animate-slow: slow 6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-slow: slow 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   @keyframes rise { from { transform: translateY(112%) } to { transform: none } }
   @keyframes fade { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
   @keyframes slow { from { transform: scale(1.12) } to { transform: scale(1) } }
@@ -29,9 +30,9 @@
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-[1440px] px-5 md:px-16; }
-  .mono { @apply text-sm leading-snug text-muted; }
-  .h1 { @apply text-[clamp(38px,9vw,152px)] [overflow-wrap:anywhere] uppercase leading-[0.92] tracking-[0.01em]; }
-  .h2 { @apply text-[clamp(26px,2.8vw,40px)] leading-[1.1]; }
+  .mono { @apply text-sm font-medium leading-snug text-muted; }
+  .h1 { @apply text-[clamp(38px,9vw,152px)] [overflow-wrap:anywhere] uppercase leading-[0.92] tracking-[0.01em]; font-family: var(--font-display); }
+  .h2 { @apply text-[clamp(26px,2.8vw,40px)] leading-[1.1]; font-family: var(--font-display); text-wrap: balance; }
   .sec { @apply py-[72px] md:py-[120px]; }
   .rule { @apply border-t border-line; }
   .zoom { @apply relative block overflow-hidden bg-panel; }
@@ -51,9 +52,9 @@
 
 /* Shared typography for rich text coming from Payload (custom pages, blog posts). */
 @layer components {
-  .prose-site { @apply max-w-[820px] text-lg leading-relaxed text-soft; }
+  .prose-site { @apply max-w-[65ch] text-lg leading-relaxed text-soft; }
   .prose-site > * + * { @apply mt-6; }
-  .prose-site h1, .prose-site h2, .prose-site h3, .prose-site h4 { @apply leading-tight text-white; }
+  .prose-site h1, .prose-site h2 { @apply leading-tight text-white; font-family: var(--font-display); }
   .prose-site h1 { @apply mt-14 text-[clamp(32px,4vw,56px)]; }
   .prose-site h2 { @apply mt-12 text-[clamp(26px,2.8vw,40px)]; }
   .prose-site h3 { @apply mt-10 text-2xl; }

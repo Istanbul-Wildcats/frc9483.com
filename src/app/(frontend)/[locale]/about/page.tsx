@@ -1,5 +1,8 @@
+import Link from 'next/link'
+
 import { Pic } from '@/components/site/Pic'
 import { PageHeading } from '@/components/site/PageHeading'
+import { buttonVariants } from '@/components/ui/button'
 import { isLocale } from '@/i18n/config'
 import { getPage, getT, global } from '@/lib/payload'
 import { pageMetadata } from '@/lib/seo'
@@ -49,6 +52,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {a.teams?.map((x, i) => (
           <div key={x.id} className="row"><h3 className="h2">{x.name}</h3></div>
         ))}
+        {/* the page's primary audience is prospective members: give them the next step */}
+        <div className="mt-10"><Link href={`/${l}/join`} className={buttonVariants({ size: 'sm' })}>{d.join}</Link></div>
       </section>
     </>
   )

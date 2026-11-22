@@ -20,13 +20,18 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <>
       <PageHeading>{pg.heading}</PageHeading>
       <section className="wrap sec flex flex-col items-start gap-8 !pt-0">
-        <p className="h2 max-w-[720px]">{pg.intro || d.joinIntro}</p>
-        {url && (
-          <a href={url} target="_blank" rel="noopener" className={buttonVariants()}>
-            {d.openForm}<span className="sr-only"> ({d.newTab})</span>
-          </a>
+        {url ? (
+          <>
+            <p className="h2 max-w-[720px]">{pg.intro || d.joinIntro}</p>
+            <a href={url} target="_blank" rel="noopener" className={buttonVariants()}>
+              {d.openForm}<span className="sr-only"> ({d.newTab})</span>
+            </a>
+            <span className="mono">{d.formHint}</span>
+          </>
+        ) : (
+          // closed season: never show "fill the form" copy without the button
+          <p className="h2 max-w-[720px] text-soft">{d.joinClosed}</p>
         )}
-        
       </section>
     </>
   )

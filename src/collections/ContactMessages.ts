@@ -13,6 +13,21 @@ export const ContactMessages: CollectionConfig = {
   },
   defaultSort: '-createdAt',
   access: { create: () => false, read: staffOnly, update: staffOnly, delete: staffOnly },
+  hooks: {
+    afterChange: [
+      // notify the team on every new message; the console mail provider logs it until a real provider is connected
+      ({ doc, req, operation }) => {
+        if (operation !== 'create') return
+        return req.payload
+          .sendEmail({
+            to: 'hello@frc9483.com',
+            subject: `Yeni iletişim formu mesajı: ${doc.name} (${doc.topic})`,
+            text: `Kimden: ${doc.name} <${doc.email}>\nKonu: ${doc.topic}\n\n${doc.message}`,
+          })
+          .catch((err) => req.payload.logger.error({ msg: 'contact notification failed', err }))
+      },
+    ],
+  },
   fields: [
     { name: 'name', type: 'text', required: true, admin: { readOnly: true } },
     { name: 'email', type: 'email', required: true, admin: { readOnly: true } },

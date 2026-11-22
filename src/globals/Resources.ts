@@ -10,6 +10,7 @@ export const Resources: GlobalConfig = {
       fields: [
         { name: 'label', type: 'text', required: true, localized: true },
         { name: 'url', type: 'text', required: true },
+        { name: 'description', type: 'text', localized: true, admin: { description: 'Bağlantının ne işe yaradığı, tek satır.' } },
       ],
     },
   ],

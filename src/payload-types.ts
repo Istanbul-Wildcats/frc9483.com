@@ -343,6 +343,14 @@ export interface Robot {
     youtube?: string | null;
     statbotics?: string | null;
     firstEvents?: string | null;
+    /**
+     * Robotun Chief Delphi tanıtım/build thread'i, örn. https://www.chiefdelphi.com/t/...
+     */
+    chiefDelphi?: string | null;
+    /**
+     * Örn. Team 9483 Presents: Enigma
+     */
+    chiefDelphiTitle?: string | null;
   };
   epaRank?: string | null;
   updatedAt: string;
@@ -689,6 +697,8 @@ export interface RobotsSelect<T extends boolean = true> {
         youtube?: T;
         statbotics?: T;
         firstEvents?: T;
+        chiefDelphi?: T;
+        chiefDelphiTitle?: T;
       };
   epaRank?: T;
   updatedAt?: T;
@@ -846,6 +856,14 @@ export interface SiteSetting {
   forms?: {
     joinUrl?: string | null;
   };
+  /**
+   * Sitede kullanılan yazı tipleri. Yalnızca önceden yüklenmiş aileler seçilebilir; seçim tüm sitede anında uygulanır.
+   */
+  fonts?: {
+    bodyFont?:
+      ('inter' | 'barlow' | 'archivo' | 'ibm-plex-sans' | 'hanken-grotesk' | 'manrope' | 'space-grotesk') | null;
+    displayFont?: ('anta' | 'saira' | 'space-grotesk' | 'archivo') | null;
+  };
   socials?:
     | {
         label: string;
@@ -881,11 +899,11 @@ export interface UiText {
    */
   robots?: string | null;
   /**
-   * Varsayılan: Detay
+   * Varsayılan: İncele
    */
   detail?: string | null;
   /**
-   * Varsayılan: Tüm başarılar
+   * Varsayılan: Tüm başarılarımız
    */
   allAwards?: string | null;
   /**
@@ -1116,6 +1134,30 @@ export interface UiText {
    * Varsayılan: İçeriğe geç
    */
   skipToContent?: string | null;
+  /**
+   * Varsayılan: Başvurular şu anda kapalı. Soruların için bize yazabilirsin.
+   */
+  joinClosed?: string | null;
+  /**
+   * Varsayılan: Google Forms'ta açılır · yeni sekme
+   */
+  formHint?: string | null;
+  /**
+   * Varsayılan: Sipariş ve duyurular için bize ulaş.
+   */
+  orderNote?: string | null;
+  /**
+   * Varsayılan: Chief Delphi build thread
+   */
+  buildThread?: string | null;
+  /**
+   * Varsayılan: Ödül adları FIRST'un resmi adlarıdır: Woodie Flowers — mentorluk, Innovation in Control — kontrol mühendisliği, Leadership — takım liderliği.
+   */
+  awardsNote?: string | null;
+  /**
+   * Varsayılan: Overcharge'in rakamları
+   */
+  sponsorStats?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1227,6 +1269,10 @@ export interface Resource {
     | {
         label: string;
         url: string;
+        /**
+         * Bağlantının ne işe yaradığı, tek satır.
+         */
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1251,6 +1297,12 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | T
     | {
         joinUrl?: T;
+      };
+  fonts?:
+    | T
+    | {
+        bodyFont?: T;
+        displayFont?: T;
       };
   socials?:
     | T
@@ -1331,6 +1383,12 @@ export interface UiTextSelect<T extends boolean = true> {
   previous?: T;
   next?: T;
   skipToContent?: T;
+  joinClosed?: T;
+  formHint?: T;
+  orderNote?: T;
+  buildThread?: T;
+  awardsNote?: T;
+  sponsorStats?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1425,6 +1483,7 @@ export interface ResourcesSelect<T extends boolean = true> {
     | {
         label?: T;
         url?: T;
+        description?: T;
         id?: T;
       };
   updatedAt?: T;

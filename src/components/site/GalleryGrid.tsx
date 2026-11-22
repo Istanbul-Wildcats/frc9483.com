@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-export type GalleryItem = { src: string; alt: string }
+export type GalleryItem = { src: string; alt: string; caption?: string }
 
 type Labels = { view: string; close: string; previous: string; next: string }
 
@@ -35,15 +35,17 @@ export function GalleryGrid({ items, labels }: { items: GalleryItem[]; labels: L
     <>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(min(320px,100%),1fr))] gap-2">
         {items.map((g, i) => (
-          <button
-            key={g.src}
-            type="button"
-            onClick={() => show(i)}
-            aria-label={`${labels.view}: ${g.alt}`}
-            className="zoom aspect-[4/3] cursor-zoom-in active:opacity-80"
-          >
-            <Image src={g.src} alt="" fill quality={90} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
-          </button>
+          <div key={i} className="flex flex-col gap-1.5">
+            <button
+              type="button"
+              onClick={() => show(i)}
+              aria-label={`${labels.view}: ${g.alt}`}
+              className="zoom aspect-[4/3] cursor-zoom-in active:opacity-80"
+            >
+              <Image src={g.src} alt="" fill quality={75} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+            </button>
+            {g.caption && <span className="mono line-clamp-1 text-muted">{g.caption}</span>}
+          </div>
         ))}
       </div>
 
@@ -67,7 +69,7 @@ export function GalleryGrid({ items, labels }: { items: GalleryItem[]; labels: L
       >
         {open && item && (
           <div className="relative h-[min(80dvh,860px)] w-full">
-            <Image key={item.src} src={item.src} alt={item.alt} fill quality={90} sizes="(min-width: 1280px) 1180px, 94vw" className="object-contain" priority />
+            <Image key={item.src} src={item.src} alt={item.alt} fill quality={75} sizes="(min-width: 1280px) 1180px, 94vw" className="object-contain" priority />
             <span className="lb-count mono" aria-live="polite">
               {index + 1} / {items.length}
             </span>

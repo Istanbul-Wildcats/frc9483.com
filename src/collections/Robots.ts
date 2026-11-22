@@ -65,6 +65,8 @@ export const Robots: CollectionConfig = {
         { name: 'youtube', type: 'text' },
         { name: 'statbotics', type: 'text' },
         { name: 'firstEvents', type: 'text', label: 'FIRST Events' },
+        { name: 'chiefDelphi', type: 'text', label: 'Chief Delphi', admin: { description: "Robotun Chief Delphi tanıtım/build thread'i, örn. https://www.chiefdelphi.com/t/..." } },
+        { name: 'chiefDelphiTitle', type: 'text', label: 'Chief Delphi başlığı', admin: { description: 'Örn. Team 9483 Presents: Enigma' } },
       ],
     },
     { name: 'epaRank', type: 'text' },

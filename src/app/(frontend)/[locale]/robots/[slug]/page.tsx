@@ -36,11 +36,14 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
   const [r] = await list('robots', l, { where: { slug: { equals: slug } }, limit: 1 })
   if (!r) notFound()
   const d = await getT(l)
-  const sources = [
+  const sources: { name: string; url: string; note?: string }[] = [
     { name: 'The Blue Alliance', url: r.links?.tba || `https://www.thebluealliance.com/team/9483/${r.season}` },
     { name: 'Statbotics', url: r.links?.statbotics || `https://www.statbotics.io/team/9483/${r.season}` },
     { name: 'FIRST Events', url: r.links?.firstEvents || `https://frc-events.firstinspires.org/${r.season}/team/9483` },
     ...(r.links?.youtube ? [{ name: 'YouTube', url: r.links.youtube }] : []),
+    ...(r.links?.chiefDelphi
+      ? [{ name: r.links.chiefDelphiTitle || 'Chief Delphi', url: r.links.chiefDelphi, note: 'Chief Delphi' }]
+      : []),
   ]
   const videos = (r.videos ?? []).flatMap((v) => {
     const id = youtubeId(v.url)
@@ -79,7 +82,7 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
           <a key={x.name} href={x.url} target="_blank" rel="noopener" className="row group md:grid-cols-[1fr_auto]">
             <span className="flex flex-col gap-1">
               <span className="text-[clamp(20px,2vw,26px)]">{x.name}</span>
-              <span className="mono">{r.season} {d.sourceNote}</span>
+              <span className="mono">{x.note ?? `${r.season} ${d.sourceNote}`}</span>
             </span>
             <ArrowUpRight aria-hidden className="size-6 text-muted transition-colors group-hover:text-white" />
             <span className="sr-only">({d.newTab})</span>

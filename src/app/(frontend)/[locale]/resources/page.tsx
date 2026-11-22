@@ -27,7 +27,14 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
       <PageHeading>{pg.heading}</PageHeading>
       <section className="wrap pb-36">
         {r.links?.map((x) => (
-          <a key={x.id} href={x.url} target={x.url.startsWith('http') ? '_blank' : undefined} rel="noopener" className="row"><h3 className="h2">{x.label}</h3></a>
+          <a key={x.id} href={x.url} target={x.url.startsWith('http') ? '_blank' : undefined} rel="noopener" className="row group md:grid-cols-[1fr_auto]">
+            <span className="flex flex-col gap-1">
+              <h2 className="h2">{x.label}</h2>
+              {x.description && <span className="mono">{x.description}</span>}
+            </span>
+            <ArrowUpRight aria-hidden className="size-6 text-muted transition-colors group-hover:text-white" />
+            <span className="sr-only">({d.newTab})</span>
+          </a>
         ))}
         {videos.length > 0 && (
           <>
