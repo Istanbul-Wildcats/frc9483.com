@@ -1,4 +1,5 @@
-import { Anta, Racing_Sans_One } from 'next/font/google'
+import { Anta } from 'next/font/google'
+import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -13,8 +14,8 @@ import '../globals.css'
 
 /* FRC 9483 design system: Anta (Google Fonts, Regular only) is the display and body face. */
 const anta = Anta({ subsets: ['latin', 'latin-ext'], weight: '400', variable: '--font-anta' })
-/* Wordmark face: the design system's A4 SPEED has no font file yet, so this heavy italic is its stand-in (swap in src/app/(frontend)/globals.css --font-wordmark once the file exists). */
-const racing = Racing_Sans_One({ subsets: ['latin'], weight: '400', variable: '--font-racing' })
+/* Wordmark: A4 SPEED Bold from the design system (a free-for-personal-use font; the team holds/arranges the commercial license). */
+const a4speed = localFont({ src: '../../../fonts/A4SPEED-Bold.ttf', weight: '700', variable: '--font-a4speed' })
 
 export const generateStaticParams = () => locales.map((locale) => ({ locale }))
 
@@ -62,7 +63,7 @@ export default async function LocaleLayout({
     sameAs: s.socials?.map((x) => x.url),
   }
   return (
-    <html lang={locale} className={`${anta.variable} ${racing.variable}`}>
+    <html lang={locale} className={`${anta.variable} ${a4speed.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
         <a href="#content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-3 focus:text-black">{d.skipToContent}</a>
