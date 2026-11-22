@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { processImage, processingModes, type ProcessingMode } from '@/lib/image-processing'
+import { capSize, processImage, processingModes, type ProcessingMode } from '@/lib/image-processing'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -8,13 +8,20 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   hooks: {
-    // Runs on the uploaded file before it is stored: converts it according to the "Otomatik dönüştürme" choice.
+    // Runs on the uploaded file before it is stored: converts it according to the "Otomatik dönüştürme" choice,
+    // then downscales anything larger than 2400px on its longest side (smaller files are left untouched).
     beforeOperation: [
       async ({ args, operation, req }) => {
+        if ((operation !== 'create' && operation !== 'update') || !req.file?.data?.length) return args
+        let file = req.file
         const mode = (args as { data?: { processing?: string } }).data?.processing as ProcessingMode | undefined
-        if ((operation !== 'create' && operation !== 'update') || !mode || !processingModes.includes(mode) || !req.file?.data?.length) return args
-        const data = await processImage[mode](req.file.data)
-        req.file = { ...req.file, data, size: data.length, mimetype: 'image/png', name: req.file.name.replace(/\.[^.]+$/, '') + '.png' }
+        if (mode && processingModes.includes(mode)) {
+          const data = await processImage[mode](file.data)
+          file = { ...file, data, size: data.length, mimetype: 'image/png', name: file.name.replace(/\.[^.]+$/, '') + '.png' }
+        }
+        const capped = await capSize(file.data, file.mimetype)
+        if (capped) file = { ...file, data: capped, size: capped.length }
+        req.file = file
         return args
       },
     ],
