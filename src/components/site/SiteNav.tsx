@@ -21,7 +21,7 @@ export async function SiteNav({ locale }: { locale: Locale }) {
     <header className="relative">
       <div className="wrap flex items-center justify-between gap-6 py-4">
         <Link href={`/${locale}`} aria-label="Overcharge">
-          {logo?.url && <Image src={logo.url} alt={logo.alt} width={Math.round(((logo.width ?? 1) / (logo.height ?? 1)) * 48)} height={48} priority unoptimized className="h-12 w-auto" />}
+          {logo?.url && <Image src={logo.url} alt={logo.alt} width={Math.round(((logo.width ?? 1) / (logo.height ?? 1)) * 36)} height={36} priority unoptimized className="h-8 w-auto md:h-9" />}
         </Link>
         <nav aria-label="Main" className="hidden flex-wrap items-center justify-end gap-x-7 xl:flex">
           {links.map((l) => (
