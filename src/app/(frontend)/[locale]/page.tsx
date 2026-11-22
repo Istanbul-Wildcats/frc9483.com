@@ -7,7 +7,8 @@ import { buttonVariants } from '@/components/ui/button'
 import { isLocale } from '@/i18n/config'
 import { getPage, getT, global, list } from '@/lib/payload'
 import { pageMetadata } from '@/lib/seo'
-import { wordmarkClass, wordmarkText } from '@/lib/text'
+import { Wordmark, wordmarkUpperFits } from '@/components/site/Wordmark'
+import { wordmarkClass } from '@/lib/text'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -39,8 +40,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute inset-0" style={{ background: scrim }} />
         <div className="wrap relative z-10 pb-14">
           <span className={`${wordmarkClass(home.heroTag) || 'font-display'} block animate-fade text-[clamp(28px,4vw,52px)] leading-none text-white [animation-delay:0.15s] [text-shadow:0_2px_24px_rgb(0_0_0/0.55)]`}>{home.heroTag}</span>
-          <h1 className={`h1 ${wordmarkClass(home.heroTitle)} my-4 mb-10 block overflow-hidden pb-[0.08em] text-[clamp(48px,10vw,160px)] [overflow-wrap:anywhere] [text-shadow:0_2px_32px_rgb(0_0_0/0.55)]`}>
-            <span className="block animate-rise [animation-delay:0.05s]">{wordmarkText(home.heroTitle)}</span>
+          <h1 className={`h1 ${wordmarkUpperFits(home.heroTitle) ? 'wordmark' : ''} my-4 mb-10 block overflow-hidden pb-[0.08em] text-[clamp(48px,10vw,160px)] [overflow-wrap:anywhere] [text-shadow:0_2px_32px_rgb(0_0_0/0.55)]`}>
+            <span className="block animate-rise [animation-delay:0.05s]">{wordmarkUpperFits(home.heroTitle) ? <Wordmark text={home.heroTitle} /> : home.heroTitle}</span>
           </h1>
           <div className="flex animate-fade flex-wrap gap-3 [animation-delay:0.3s]">
             <Link href={`/${l}/join`} className={buttonVariants()}>{d.joinTeam}</Link>

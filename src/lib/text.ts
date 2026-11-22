@@ -32,7 +32,3 @@ export function snippet(text: string, max = 155) {
 export const wordmarkFits = (t: unknown): t is string => typeof t === 'string' && /^[\x20-\x7E]+$/.test(t)
 export const wordmarkClass = (t: unknown) => (wordmarkFits(t) ? 'wordmark' : '')
 
-/**
- * Wordmark headings are upper-cased here, not by CSS: on a Turkish page CSS maps "i" to "İ", a glyph A4 SPEED lacks.
- */
-export const wordmarkText = <T,>(t: T): T | string => (wordmarkFits(t) ? t.toUpperCase() : t)

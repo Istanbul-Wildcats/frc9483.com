@@ -1,10 +1,10 @@
-import { wordmarkClass, wordmarkText } from '@/lib/text'
+import { Wordmark, wordmarkUpperFits } from './Wordmark'
 
 export function PageHeading({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
     <section className={`wrap pt-24 pb-14 ${center ? 'text-center' : ''}`}>
-      <h1 className={`h1 ${wordmarkClass(children)}`}>
-        {wordmarkText(children)}
+      <h1 className={`h1 ${wordmarkUpperFits(children) ? 'wordmark' : ''}`}>
+        {wordmarkUpperFits(children) ? <Wordmark text={children} /> : children}
       </h1>
     </section>
   )
