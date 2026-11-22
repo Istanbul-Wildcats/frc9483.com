@@ -20,7 +20,7 @@ export function AwardBanners({ awards, season, className = '' }: { awards: Award
         return (
           <li key={a.id ?? i} className="relative mb-10 h-[170px] w-[140px] bg-[#0f4bcb] p-2 text-center text-white [filter:drop-shadow(0_5px_5px_rgba(0,0,0,.1))]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/first-icon.svg" alt="" className="mx-auto my-2.5 max-h-[45px] w-[75px]" />
+            <img src="/first-icon.svg" alt="" width={75} height={45} className="mx-auto my-2.5 max-h-[45px] w-[75px]" />
             <div className="table h-[35px] w-full" style={{ margin: '3px 0' }}>
               <span className={`table-cell align-middle font-bold uppercase italic text-[14px]`}>{name}</span>
             </div>

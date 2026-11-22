@@ -24,7 +24,7 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
       <section className="wrap grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-x-10 gap-y-16 pb-36">
         {robots.map((r) => (
           <article key={r.id} className="flex flex-col items-center gap-6 text-center">
-            <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[220px] md:h-[400px] w-full bg-panel"><Pic media={r.image} contain /></Link>
+            <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[220px] md:h-[400px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
             <span className="mono">{r.season}</span>
             <h3 className="h2">{r.name}</h3>
             <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>

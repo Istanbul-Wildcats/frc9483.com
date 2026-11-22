@@ -45,7 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-x-10 gap-y-14">
           {robots.map((r) => (
             <div key={r.id} className="flex flex-col items-center gap-7 text-center">
-              <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[210px] md:h-[380px] w-full bg-panel"><Pic media={r.image} contain /></Link>
+              <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[210px] md:h-[380px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
               <div className="flex flex-col items-center gap-2.5"><span className="mono">{r.season}</span><h3 className="h2">{r.name}</h3></div>
               <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>
             </div>
