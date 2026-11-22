@@ -35,17 +35,15 @@ export function GalleryGrid({ items, labels }: { items: GalleryItem[]; labels: L
     <>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(min(320px,100%),1fr))] gap-2">
         {items.map((g, i) => (
-          <div key={i} className="flex flex-col gap-1.5">
-            <button
-              type="button"
-              onClick={() => show(i)}
-              aria-label={`${labels.view}: ${g.alt}`}
-              className="zoom aspect-[4/3] cursor-zoom-in active:opacity-80"
-            >
-              <Image src={g.src} alt="" fill quality={75} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
-            </button>
-            {g.caption && <span className="mono line-clamp-1 text-muted">{g.caption}</span>}
-          </div>
+          <button
+            key={i}
+            type="button"
+            onClick={() => show(i)}
+            aria-label={`${labels.view}: ${g.alt}`}
+            className="zoom aspect-[4/3] cursor-zoom-in active:opacity-80"
+          >
+            <Image src={g.src} alt="" fill quality={75} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+          </button>
         ))}
       </div>
 
@@ -73,6 +71,11 @@ export function GalleryGrid({ items, labels }: { items: GalleryItem[]; labels: L
             <span className="lb-count mono" aria-live="polite">
               {index + 1} / {items.length}
             </span>
+            {item.caption && (
+              <p className="mono absolute bottom-16 left-1/2 z-10 hidden max-w-[70%] -translate-x-1/2 rounded-pill border border-white/20 bg-black/55 px-3.5 py-1.5 text-center text-muted backdrop-blur md:block">
+                {item.caption}
+              </p>
+            )}
             <button type="button" onClick={() => dialog.current?.close()} aria-label={labels.close} className="lb-btn right-3 top-3">
               <X aria-hidden className="size-5" />
             </button>
