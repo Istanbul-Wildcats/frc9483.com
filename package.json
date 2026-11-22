@@ -20,6 +20,7 @@
     "@payloadcms/translations": "3.94.1",
     "@payloadcms/ui": "3.94.1",
     "@tailwindcss/postcss": "^4.3.5",
+    "@vercel/speed-insights": "^2.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "graphql": "^16.15.0",

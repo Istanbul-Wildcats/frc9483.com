@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { SiteFooter } from '@/components/site/SiteFooter'
 import { SiteNav } from '@/components/site/SiteNav'
@@ -70,6 +71,7 @@ export default async function LocaleLayout({
         <SiteNav locale={locale} />
         <main id="content">{children}</main>
         <SiteFooter locale={locale} />
+        <SpeedInsights />
       </body>
     </html>
   )
