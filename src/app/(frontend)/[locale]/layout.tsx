@@ -1,4 +1,4 @@
-import { Anta, Archivo, Barlow, Hanken_Grotesk, IBM_Plex_Sans, Inter, Manrope, Saira, Space_Grotesk } from 'next/font/google'
+import { Anta } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -11,24 +11,8 @@ import { SITE_URL } from '@/lib/seo'
 
 import '../globals.css'
 
-/* CMS-selectable font candidates (site-settings.fonts). Unselected families are declared
-   but never downloaded by the browser: next/font only fetches faces a page actually uses. */
+/* FRC 9483 design system: Anta (Google Fonts, Regular only) is the display and body face. */
 const anta = Anta({ subsets: ['latin', 'latin-ext'], weight: '400', variable: '--font-anta' })
-const inter = Inter({ subsets: ['latin', 'latin-ext'], variable: '--font-inter' })
-const barlow = Barlow({ subsets: ['latin', 'latin-ext'], weight: ['400', '500', '600'], variable: '--font-barlow' })
-const archivo = Archivo({ subsets: ['latin', 'latin-ext'], variable: '--font-archivo' })
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin', 'latin-ext'], variable: '--font-space-grotesk' })
-const manrope = Manrope({ subsets: ['latin', 'latin-ext'], variable: '--font-manrope' })
-const hankenGrotesk = Hanken_Grotesk({ subsets: ['latin', 'latin-ext'], variable: '--font-hanken-grotesk' })
-const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin', 'latin-ext'], weight: ['400', '500', '600'], variable: '--font-ibm-plex-sans' })
-const saira = Saira({ subsets: ['latin', 'latin-ext'], variable: '--font-saira' })
-
-const FONTS = {
-  anta, inter, barlow, archivo, manrope, saira,
-  'space-grotesk': spaceGrotesk,
-  'hanken-grotesk': hankenGrotesk,
-  'ibm-plex-sans': ibmPlexSans,
-}
 
 export const generateStaticParams = () => locales.map((locale) => ({ locale }))
 
@@ -66,11 +50,6 @@ export default async function LocaleLayout({
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const [s, d] = await Promise.all([global('site-settings', locale), getT(locale)])
-  const fontVars = Object.values(FONTS).map((f) => f.variable).join(' ')
-  const fontStyle = {
-    '--font-sans': `var(--font-${s.fonts?.bodyFont ?? 'inter'}), system-ui, sans-serif`,
-    '--font-display': `var(--font-${s.fonts?.displayFont ?? 'anta'}), system-ui, sans-serif`,
-  } as React.CSSProperties
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SportsTeam',
@@ -81,7 +60,7 @@ export default async function LocaleLayout({
     sameAs: s.socials?.map((x) => x.url),
   }
   return (
-    <html lang={locale} className={fontVars} style={fontStyle}>
+    <html lang={locale} className={anta.variable}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
         <a href="#content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-3 focus:text-black">{d.skipToContent}</a>

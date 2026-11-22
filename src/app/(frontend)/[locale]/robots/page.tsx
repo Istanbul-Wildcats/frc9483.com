@@ -26,8 +26,8 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
   const offCols = 3
   // 1 robot → centered in the 3-track area; 2 → fill from the left; 3+ → left-aligned rows
   const card = (r: (typeof robots)[number], extra = '') => (
-    <article key={r.id} className={`flex flex-col items-center gap-6 text-center ${extra}`}>
-      <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[220px] md:h-[400px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
+    <article key={r.id} className={`card lift flex flex-col items-center gap-6 text-center ${extra}`}>
+      <Link href={`/${l}/robots/${r.slug}`} className="zoom stage h-[220px] md:h-[400px] w-full"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
       <span className="mono">{r.season}</span>
       <h2 className="h2">{r.name}</h2>
       <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>
@@ -42,10 +42,10 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
       >
         {season.map((r) => card(r))}
       </section>
-      {offSeason.length > 0 && (
+      {offSeason.length > 0 && pg.show('robotsOffSeason') && (
         <>
           <section className="wrap">
-            <h2 className="mono mb-10 block">{d.offSeasonRobots}</h2>
+            <h2 className="sec-title mb-10">{d.offSeasonRobots}</h2>
           </section>
           <section className="robot-grid wrap gap-y-16 pb-36" style={{ '--robot-cols': offCols } as React.CSSProperties}>
             {offSeason.map((r) => card(r, offSeason.length === 1 ? 'md:col-start-2' : ''))}

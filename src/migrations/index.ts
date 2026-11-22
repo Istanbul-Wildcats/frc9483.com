@@ -4,6 +4,7 @@ import * as migration_20261122_201022_add_off_season from './20261122_201022_add
 import * as migration_20261122_204500_add_offseason_ui_text from './20261122_204500_add_offseason_ui_text';
 import * as migration_20261122_155900_add_chief_delphi from './20261122_155900_add_chief_delphi';
 import * as migration_20261122_161200_backfill_drift from './20261122_161200_backfill_drift';
+import * as migration_20261122_230000_panel_controls from './20261122_230000_panel_controls';
 
 export const migrations = [
   {
@@ -35,5 +36,10 @@ export const migrations = [
     up: migration_20261122_204500_add_offseason_ui_text.up,
     down: migration_20261122_204500_add_offseason_ui_text.down,
     name: '20261122_204500_add_offseason_ui_text'
+  },
+  {
+    up: migration_20261122_230000_panel_controls.up,
+    down: migration_20261122_230000_panel_controls.down,
+    name: '20261122_230000_panel_controls'
   },
 ];

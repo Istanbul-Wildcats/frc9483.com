@@ -9,9 +9,12 @@ export function SeasonTable({ events, labels }: { events: NonNullable<Robot['eve
   const rec = (w: number, l: number, t: number) => `${w}-${l}-${t}`
   return (
     // nowrap values + min-width: at 390px the record and header cells stay on one line and the table scrolls instead of breaking
-    <div className="overflow-x-auto">
+    <div>
+      {/* same heading as the "Sezon ödülleri" column so the two columns line up */}
+      <h2 className="sec-title mb-8">{labels.title}</h2>
+      <div className="overflow-x-auto">
       <table className="w-full min-w-[480px] border-collapse text-left">
-      <caption className="mono mb-4 text-left">{labels.title}</caption>
+      <caption className="sr-only">{labels.title}</caption>
       <thead>
         <tr className="border-b border-line-strong text-sm text-muted">
           <th scope="col" className="py-3 pr-4 text-left font-normal">{labels.event}</th>
@@ -48,6 +51,7 @@ export function SeasonTable({ events, labels }: { events: NonNullable<Robot['eve
         </tfoot>
       )}
       </table>
+      </div>
     </div>
   )
 }

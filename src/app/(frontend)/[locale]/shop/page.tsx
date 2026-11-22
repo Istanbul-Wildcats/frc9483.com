@@ -29,8 +29,8 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
           // one square card per product, fixed width: a single product never stretches into a bar
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(220px,100%),280px))] gap-x-6 gap-y-12">
             {items.map((p) => (
-              <li key={p.id} className="flex flex-col items-center gap-4 text-center">
-                <div className="zoom aspect-square w-full bg-panel">
+              <li key={p.id} className="card lift flex flex-col items-center gap-4 text-center">
+                <div className="zoom stage aspect-square w-full">
                   <Pic media={p.image} contain sizes="280px" />
                 </div>
                 <p className="text-[clamp(20px,2vw,26px)] leading-tight">{p.name}</p>

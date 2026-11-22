@@ -54,8 +54,7 @@ Odak halkası: `2px solid #ebeff9`, `outline-offset: 4px` (`:focus-visible`, glo
 
 | Rol | Font | Durum |
 | --- | --- | --- |
-| Display / başlık (web) | **Anta** (Regular 400) | CMS'ten seçilebilir: `site-settings.fonts.displayFont` (adaylar: anta, saira, space-grotesk, archivo). `[locale]/layout.tsx` adayları next/font ile tanımlar, seçim html'e inline `--font-display` override'ı olarak uygulanır. Kullanılmayan aileler tarayıcıya indirilmez |
-| Gövde / caption (web) | **Barlow** (400/500/600) | CMS'ten seçilebilir: `site-settings.fonts.bodyFont` (adaylar: barlow, inter, archivo, ibm-plex-sans, hanken-grotesk, manrope, space-grotesk). `--font-sans` aynı mekanizma. Nav, buton, `.mono` etiket ve prose gövde bu fontta; nav/buton/etiket `font-medium` (500) |
+| Display + gövde (web) | **Anta** (Regular 400) | Tasarım sistemindeki `display`/`sans` ailesi; sitede her yerde tek font (`--font-sans` = `--font-display`). CMS'ten seçilmez |
 | Display (sunum) | A4 SPEED Bold | Dosyası yok; web'de Anta geçici stand-in |
 | Numeral (sunum) | Batteny Personal Use | Kişisel lisans; **web'de kullanma** |
 | Caption (sunum) | Gilroy Medium | Ticari lisans; web'de **Inter** görsüyor |
@@ -190,7 +189,7 @@ Easing: `cubic-bezier(0.2, 0.8, 0.2, 1)`.
 
 ## 10. Sistem ↔ Site farkları ve açık işler
 
-1. **Fontlar:** Sistem 4 aile tanımlıyor (A4 SPEED, Anta, Batteny, Gilroy); sitede display ve gövde rolleri CMS'ten seçilebilir (`site-settings.fonts`, varsayılan Anta + Barlow). A4 SPEED dosyası yok; Batteny lisans nedeniyle web için uygun değil; Gilroy'un rolünü Barlow üstleniyor. Display görünümü şimdilik Anta + `uppercase` + büyük `clamp()` ile sağlanıyor.
+1. **Fontlar:** Sistem 4 aile tanımlıyor (A4 SPEED, Anta, Batteny, Gilroy); sitede display ve gövde Anta'dır (CMS'ten seçilmez). A4 SPEED dosyası yok; Batteny lisans nedeniyle web için uygun değil; Gilroy'un rolünü de Anta üstleniyor. Display görünümü şimdilik Anta + `uppercase` + büyük `clamp()` ile sağlanıyor.
 2. **Token'lar:** `panel #111111` ve `deep #050505` sistemde yok (siteye özgü); `neutral-50…700`, `accent-red`, `slate-*`, `zinc-200` sitede tanımlı değil. Gerekince `@theme`'e aynı adlarla ekle.
 3. **Köşe/boşluk ölçeği** sitede token olarak değil, Tailwind aralığı ve literal `px` ile kullanılıyor (`py-[72px]`, `py-[26px]`).
 4. **Açık tema** yok; **gölge token'ı** yok.

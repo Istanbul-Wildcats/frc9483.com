@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import { cache } from 'react'
 
 import { pageHeadingDefaults, uiDefaults, uiKeys, type Locale, type PageSlug } from '@/i18n/config'
+import type { SectionKey } from '@/lib/sections'
 import type { Media } from '@/payload-types'
 
 export const payload = () => getPayload({ config })
@@ -52,6 +53,8 @@ export const getPage = cache(async (slug: string, locale: Locale) => {
     intro: doc?.intro ?? undefined,
     body: doc?.body,
     seo: doc?.seo,
+    /** Section switch from the panel (Sayfalar → Bölümler): visible unless explicitly turned off. */
+    show: (key: SectionKey) => doc?.sections?.[key] !== false,
   }
 })
 

@@ -10,7 +10,7 @@ export const Sponsors: CollectionConfig = {
     { name: 'name', type: 'text', required: true, admin: { description: 'Marka adı (örn. AXA Sigorta).' } },
     { name: 'legalName', type: 'text', admin: { description: 'Varsa tam şirket unvanı; markanın altında küçük yazılır.' } },
     { name: 'logo', type: 'upload', relationTo: 'media', admin: { description: 'Beyaz/şeffaf logo. Yoksa marka adı yazı olarak gösterilir.' } },
-    { name: 'url', type: 'text' },
+    { name: 'url', type: 'text', label: 'Web sitesi', admin: { description: 'Sponsorun sitesi (örn. https://axa.com.tr). Doluysa logo bu adrese bağlanır; boşsa logo bağlantısız görünür.' } },
     {
       name: 'status',
       type: 'select',

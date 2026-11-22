@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { pageSlugs } from '@/i18n/config'
+import { sectionToggles } from '@/lib/sections'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -34,6 +35,22 @@ export const Pages: CollectionConfig = {
       type: 'richText',
       localized: true,
       admin: { description: 'Yeni (özel) sayfaların içeriği. Hazır sayfalarda kullanılmaz.' },
+    },
+    {
+      name: 'sections',
+      type: 'group',
+      label: 'Bölümler',
+      admin: {
+        description: 'Bu sayfadaki bölümleri göster / gizle. Kapalı bölüm sitede hiç görünmez; içeriği silinmez.',
+        condition: (data) => sectionToggles.some((s) => s.page === data?.slug),
+      },
+      fields: sectionToggles.map((s) => ({
+        name: s.key,
+        type: 'checkbox' as const,
+        label: s.label,
+        defaultValue: true,
+        admin: { condition: (data: Record<string, unknown>) => data?.slug === s.page },
+      })),
     },
     {
       name: 'seo',

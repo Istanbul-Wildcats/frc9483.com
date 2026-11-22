@@ -31,9 +31,11 @@ export default async function AwardsPage({ params }: { params: Promise<{ locale:
         </section>
       ))}
       {/* FRC award names are opaque to parents and first-time visitors: one plain-language line */}
-      <section className="wrap pb-24">
-        <p className="mono max-w-[720px] text-soft">{d.awardsNote}</p>
-      </section>
+      {pg.show('awardsNote') && (
+        <section className="wrap pb-24">
+          <p className="mono max-w-[720px] text-soft">{d.awardsNote}</p>
+        </section>
+      )}
     </>
   )
 }

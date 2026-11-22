@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  /* FRC 9483 design system: Anta for display AND body (single weight, 400) */
+  --font-sans: var(--font-anta), system-ui, sans-serif;
   --font-display: var(--font-anta), system-ui, sans-serif;
   --color-background: #000000;
   --color-foreground: #ebeff9;
@@ -35,13 +36,24 @@
   .h2 { @apply text-[clamp(26px,2.8vw,40px)] leading-[1.1]; font-family: var(--font-display); text-wrap: balance; }
   .sec { @apply py-[72px] md:py-[120px]; }
   .rule { @apply border-t border-line; }
+  .sec-title { @apply block text-[clamp(28px,3.4vw,52px)] uppercase leading-[1.05] tracking-[0.01em] text-white; font-family: var(--font-display); text-wrap: balance; }
   .zoom { @apply relative block overflow-hidden bg-panel; }
+  /* Robot / product stage: black floor, soft backlight and a ground shadow so dark robots separate from the background */
+  .stage { background: radial-gradient(ellipse 65% 55% at 50% 58%, rgb(255 255 255 / 0.14), transparent 72%), #050505; box-shadow: inset 0 0 0 1px var(--color-line); }
+  .stage > img { filter: drop-shadow(0 0 1.5px rgb(255 255 255 / 0.4)) drop-shadow(0 22px 20px rgb(0 0 0 / 0.9)); }
   .zoom > img { @apply h-full w-full object-cover; transition: scale 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  /* Interactive media only: robots cards and gallery tiles; static imagery stays still */
-  a.zoom:hover > img, a.zoom:focus-visible > img, .cursor-zoom-in:hover > img { scale: 1.04; }
-  .row { @apply grid items-center gap-1.5 border-t border-line py-[26px] md:gap-6; }
-  a.row { @apply transition-colors; }
+  /* Every photo reacts to hover (the whole card drives it for linked robot cards) */
+  .zoom:hover > img, a.zoom:focus-visible > img { scale: 1.04; }
+  .row { @apply grid items-center gap-1.5 border-t border-line py-[26px] transition-colors duration-200 md:gap-6; }
+  .row:hover { @apply bg-white/[0.04]; }
   a.row:hover { @apply text-white; }
+  /* Cards: lift on hover; the whole card (not just the photo) drives the photo zoom */
+  .lift { @apply transition-[transform,box-shadow,border-color,background-color] duration-300; }
+  .lift:hover { @apply -translate-y-1; }
+  .card:hover a.zoom > img { scale: 1.04; }
+  /* Text links: underline grows from the left */
+  .link-u { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s; }
+  .link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
   /* Robot cards: 1 column on mobile, --robot-cols side by side from md up (max 5; 6+ robots go back to 3+3) */
   .robot-grid { @apply grid grid-cols-1 gap-x-10; }
   @media (min-width: 768px) { .robot-grid { grid-template-columns: repeat(var(--robot-cols, 3), minmax(min(300px, 100%), 1fr)); } }

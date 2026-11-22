@@ -11,7 +11,7 @@ type Labels = {
   topics: Record<'sponsorship' | 'collaboration' | 'join' | 'other', string>
 }
 
-const field = 'w-full border-0 border-b border-line-strong bg-transparent py-3 text-lg text-foreground placeholder:text-muted/70 focus:border-white focus:outline-none focus-visible:outline-none'
+const field = 'w-full border-0 border-b border-line-strong bg-transparent py-3 text-lg text-foreground placeholder:text-muted/70 transition-colors hover:border-white/70 focus:border-white focus:outline-none focus-visible:outline-none'
 
 export function ContactForm({ locale, labels }: { locale: string; labels: Labels }) {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendContact, { status: 'idle' })
@@ -51,14 +51,19 @@ export function ContactForm({ locale, labels }: { locale: string; labels: Labels
         {err?.email && <p id="cf-email-err" className="text-sm text-white">{err.email}</p>}
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="cf-topic" className="mono">{labels.topic}</label>
-        <select id="cf-topic" name="topic" defaultValue="sponsorship" className={`${field} [&>option]:bg-black`}>
-          {(Object.keys(labels.topics) as (keyof Labels['topics'])[]).map((k) => (
-            <option key={k} value={k}>{labels.topics[k]}</option>
+      <fieldset className="flex flex-col gap-3">
+        <legend className="mono mb-3">{labels.topic}</legend>
+        <div className="flex flex-wrap gap-2">
+          {(Object.keys(labels.topics) as (keyof Labels['topics'])[]).map((k, i) => (
+            <label key={k} className="cursor-pointer">
+              <input type="radio" name="topic" value={k} defaultChecked={i === 0} className="peer sr-only" />
+              <span className="inline-flex min-h-11 items-center rounded-pill border border-line-strong px-5 pb-0.5 text-base text-soft transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-white hover:text-white peer-checked:border-white peer-checked:bg-white peer-checked:text-black peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-foreground">
+                {labels.topics[k]}
+              </span>
+            </label>
           ))}
-        </select>
-      </div>
+        </div>
+      </fieldset>
 
       <div className="flex flex-col gap-2">
         <label htmlFor="cf-message" className="mono">{labels.message}</label>

@@ -24,7 +24,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <div className="zoom h-[340px] md:h-[620px]"><Pic media={a.heroImage} priority sizes="100vw" /></div>
       <section className="wrap sec grid items-start gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
         <div className="flex flex-col gap-8">
-          <h2 className="mono">{d.who}</h2>
+          <h2 className="sec-title">{d.who}</h2>
           <p className="text-[clamp(28px,3.4vw,52px)] leading-[1.15]">{a.lead}</p>
           {a.paragraphs?.map((p) => <p key={p.id} className="max-w-[680px] text-xl leading-relaxed text-soft">{p.text}</p>)}
           <p className="h2 !text-[clamp(24px,2.6vw,36px)]">{a.tagline}</p>
@@ -33,28 +33,30 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <div className="zoom h-[340px] md:h-[560px]"><Pic media={a.whoImage} /></div>
         </div>
       </section>
-      <section className="rule wrap grid grid-cols-2 gap-10 py-16 md:grid-cols-4">
+      {pg.show('aboutStats') && <section className="rule wrap grid grid-cols-2 gap-10 py-16 md:grid-cols-4">
         {a.stats?.map((s) => (
-          <div key={s.id} className="flex flex-col gap-3"><span className="text-[clamp(56px,7vw,112px)] leading-none">{s.value}</span><span className="mono">{s.label}</span></div>
+          <div key={s.id} className="lift flex flex-col gap-3"><span className="text-[clamp(56px,7vw,112px)] leading-none">{s.value}</span><span className="mono">{s.label}</span></div>
         ))}
-      </section>
-      <section className="wrap pb-[120px]">
-        <h2 className="mono mb-6 block">{d.rankings}</h2>
+      </section>}
+      {pg.show('aboutRankings') && <section className="wrap pb-[120px]">
+        <h2 className="sec-title mb-8">{d.rankings}</h2>
         {a.rankings?.map((r) => (
           <div key={r.id} className="row md:grid-cols-[140px_1fr_1fr]"><span className="mono">{r.year}</span><h3 className="h2">{r.title}</h3><span className="mono md:justify-self-end">{r.result}</span></div>
         ))}
-      </section>
-      <section className="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] gap-2 pb-2">
-        {(a.pairImages ?? []).slice(0, 2).map((m, i) => <div key={i} className="zoom h-[290px] md:h-[520px]"><Pic media={m} /></div>)}
-      </section>
-      <section className="rule wrap sec">
-        <h2 className="mono mb-6 block">{d.teams}</h2>
+      </section>}
+      {pg.show('aboutPhotos') && (
+        <section className="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] gap-2 pb-2">
+          {(a.pairImages ?? []).slice(0, 2).map((m, i) => <div key={i} className="zoom h-[290px] md:h-[520px]"><Pic media={m} /></div>)}
+        </section>
+      )}
+      {pg.show('aboutTeams') && <section className="rule wrap sec">
+        <h2 className="sec-title mb-8">{d.teams}</h2>
         {a.teams?.map((x, i) => (
           <div key={x.id} className="row"><h3 className="h2">{x.name}</h3></div>
         ))}
         {/* the page's primary audience is prospective members: give them the next step */}
         <div className="mt-10"><Link href={`/${l}/join`} className={buttonVariants({ size: 'sm' })}>{d.join}</Link></div>
-      </section>
+      </section>}
     </>
   )
 }

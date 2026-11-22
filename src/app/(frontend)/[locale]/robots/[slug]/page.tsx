@@ -36,10 +36,15 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
   const [r] = await list('robots', l, { where: { slug: { equals: slug } }, limit: 1 })
   if (!r) notFound()
   const d = await getT(l)
+  // Season robots fall back to the official season pages; off-season robots have none, so they show only the links filled in the panel.
+  const auto = (url: string) => (r.offSeason ? undefined : url)
+  const season = [
+    { name: 'The Blue Alliance', url: r.links?.tba || auto(`https://www.thebluealliance.com/team/9483/${r.season}`) },
+    { name: 'Statbotics', url: r.links?.statbotics || auto(`https://www.statbotics.io/team/9483/${r.season}`) },
+    { name: 'FIRST Events', url: r.links?.firstEvents || auto(`https://frc-events.firstinspires.org/${r.season}/team/9483`) },
+  ].flatMap((x) => (x.url ? [{ name: x.name, url: x.url }] : []))
   const sources: { name: string; url: string; note?: string }[] = [
-    { name: 'The Blue Alliance', url: r.links?.tba || `https://www.thebluealliance.com/team/9483/${r.season}` },
-    { name: 'Statbotics', url: r.links?.statbotics || `https://www.statbotics.io/team/9483/${r.season}` },
-    { name: 'FIRST Events', url: r.links?.firstEvents || `https://frc-events.firstinspires.org/${r.season}/team/9483` },
+    ...season,
     ...(r.links?.youtube ? [{ name: 'YouTube', url: r.links.youtube }] : []),
     ...(r.links?.chiefDelphi
       ? [{ name: r.links.chiefDelphiTitle || 'Chief Delphi', url: r.links.chiefDelphi, note: 'Chief Delphi' }]
@@ -61,11 +66,11 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
           <span className="mono">{[r.season, r.game].filter(Boolean).join(', ')}</span>
         </div>
       </section>
-      <div className="zoom h-[370px] md:h-[680px] bg-panel"><Pic media={r.image} contain priority sizes="100vw" /></div>
+      <div className="zoom stage h-[370px] md:h-[680px]"><Pic media={r.image} contain priority sizes="100vw" /></div>
       {r.cadImage && (
         <section className="wrap sec">
-          <h2 className="mono mb-6 block">{d.cadView}</h2>
-          <div className="zoom h-[370px] md:h-[680px] bg-panel"><Pic media={r.cadImage} contain sizes="100vw" /></div>
+          <h2 className="sec-title mb-8">{d.cadView}</h2>
+          <div className="zoom stage h-[370px] md:h-[680px]"><Pic media={r.cadImage} contain sizes="100vw" /></div>
         </section>
       )}
       {(hasStats || hasAwards || r.epaRank) && (
@@ -77,7 +82,7 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
           </div>
           {hasAwards && (
             <div>
-              <h2 className="mono mb-6 block">{d.seasonAwards}</h2>
+              <h2 className="sec-title mb-8">{d.seasonAwards}</h2>
               {r.awards?.map((a) => <div key={a.id} className="row gap-y-1 md:gap-y-1"><span className="mono">{a.event}</span><h3 className="text-[clamp(20px,2vw,26px)]">{a.title}</h3></div>)}
             </div>
           )}
@@ -85,23 +90,23 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
       )}
       {videos.length > 0 && (
         <section className="wrap sec !pt-0">
-          <h2 className="mono mb-6 block">{d.highlights}</h2>
+          <h2 className="sec-title mb-8">{d.highlights}</h2>
           <VideoStrip videos={videos} name={`${r.name} ${d.highlights}`} play={d.playVideo} />
         </section>
       )}
-      <section className="wrap pb-[120px]">
-        <h2 className="mono mb-6 block">{d.sources}</h2>
+      {sources.length > 0 && <section className="wrap pb-[120px]">
+        <h2 className="sec-title mb-8">{d.sources}</h2>
         {sources.map((x) => (
           <a key={x.name} href={x.url} target="_blank" rel="noopener" className="row group md:grid-cols-[1fr_auto]">
             <span className="flex flex-col gap-1">
               <span className="text-[clamp(20px,2vw,26px)]">{x.name}</span>
               <span className="mono">{x.note ?? `${r.season} ${d.sourceNote}`}</span>
             </span>
-            <ArrowUpRight aria-hidden className="size-6 text-muted transition-colors group-hover:text-white" />
+            <ArrowUpRight aria-hidden className="size-6 text-muted transition-[color,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
             <span className="sr-only">({d.newTab})</span>
           </a>
         ))}
-      </section>
+      </section>}
     </>
   )
 }

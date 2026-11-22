@@ -17,14 +17,14 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           <div className="flex flex-col gap-3.5">
             <span className="mono">{d.team}</span>
             {nav.links?.filter((l) => blogOpen || l.href !== '/blog').map((l) => (
-              <Link key={l.id} href={`/${locale}${l.href}`} className="text-soft hover:text-white">{l.label}</Link>
+              <Link key={l.id} href={`/${locale}${l.href}`} className="link-u self-start pb-0.5 text-soft hover:text-white">{l.label}</Link>
             ))}
           </div>
           <div className="flex flex-col gap-3.5">
             <span className="mono">{d.contact}</span>
-            {s.email && <a href={`mailto:${s.email}`} className="text-soft hover:text-white">{s.email}</a>}
+            {s.email && <a href={`mailto:${s.email}`} className="link-u self-start pb-0.5 text-soft hover:text-white">{s.email}</a>}
             {s.socials?.map((x) => (
-              <a key={x.id} href={x.url} target="_blank" rel="noopener" className="text-soft hover:text-white">{x.label}<span className="sr-only"> ({d.newTab})</span></a>
+              <a key={x.id} href={x.url} target="_blank" rel="noopener" className="link-u self-start pb-0.5 text-soft hover:text-white">{x.label}<span className="sr-only"> ({d.newTab})</span></a>
             ))}
           </div>
         </div>

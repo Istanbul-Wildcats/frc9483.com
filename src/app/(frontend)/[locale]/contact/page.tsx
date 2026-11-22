@@ -13,7 +13,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale: l } = await params
   if (!isLocale(l)) return null
   const [d, pg, s] = await Promise.all([getT(l), getPage('contact', l), global('site-settings', l)])
-  const socials = s.socials?.filter((x) => /instagram|youtube/i.test(x.label)) ?? []
+  const socials = pg.show('contactSocials') ? (s.socials?.filter((x) => x.showOnContact) ?? []) : []
   return (
     <>
       <PageHeading>{pg.heading}</PageHeading>
@@ -21,15 +21,15 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         <div className="flex flex-col gap-8">
           <p className="h2 max-w-[560px]">{pg.intro || d.contactIntro}</p>
           {s.email && (
-            <a href={`mailto:${s.email}`} className="inline-flex min-h-11 items-center text-xl underline decoration-line-strong underline-offset-8 transition-colors hover:decoration-white">
+            <a href={`mailto:${s.email}`} className="inline-flex min-h-11 items-center text-xl underline decoration-line-strong underline-offset-8 transition-colors hover:decoration-white hover:text-white">
               {s.email}
             </a>
           )}
           {socials.length > 0 && (
             <div className="flex flex-wrap gap-x-8">
               {socials.map((x) => (
-                <a key={x.id} href={x.url} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center text-soft hover:text-white">
-                  {x.label}<span className="sr-only"> ({d.newTab})</span>
+                <a key={x.id} href={x.url} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center text-soft transition-colors hover:text-white">
+                  <span className="link-u pb-0.5">{x.label}</span><span className="sr-only"> ({d.newTab})</span>
                 </a>
               ))}
             </div>

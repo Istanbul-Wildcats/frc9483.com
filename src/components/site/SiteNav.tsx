@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import type { Locale } from '@/i18n/config'
 import { getT, global, hasPosts } from '@/lib/payload'
 
@@ -14,7 +13,7 @@ export async function SiteNav({ locale }: { locale: Locale }) {
   const logo = typeof nav.logo === 'object' ? nav.logo : null
   const links = (nav.links ?? []).filter((l) => blogOpen || l.href !== '/blog').map((l) => ({ id: l.id, label: l.label, href: `/${locale}${l.href}` }))
   const join = (
-    <Link href={`/${locale}/join`} className={cn(buttonVariants({ size: 'sm' }), 'font-bold')}>
+    <Link href={`/${locale}/join`} className={buttonVariants({ size: 'sm' })}>
       {d.join}
     </Link>
   )
@@ -26,8 +25,8 @@ export async function SiteNav({ locale }: { locale: Locale }) {
         </Link>
         <nav aria-label="Main" className="hidden flex-wrap items-center justify-end gap-x-7 xl:flex">
           {links.map((l) => (
-            <Link key={l.id} href={l.href} className="inline-flex min-h-11 items-center text-sm font-medium tracking-[0.04em] text-soft transition-colors hover:text-white">
-              {l.label}
+            <Link key={l.id} href={l.href} className="inline-flex min-h-11 items-center text-sm tracking-[0.04em] text-soft transition-colors hover:text-white">
+              <span className="link-u pb-0.5">{l.label}</span>
             </Link>
           ))}
           <LocaleSwitch locale={locale} />

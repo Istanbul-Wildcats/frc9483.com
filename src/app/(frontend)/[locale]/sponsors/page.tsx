@@ -22,26 +22,28 @@ export default async function SponsorsPage({ params }: { params: Promise<{ local
     <>
       <PageHeading>{pg.heading}</PageHeading>
       <section className="wrap">
-        <h2 className="mono mb-8 block">{d.activeSponsors}</h2>
+        <h2 className="sec-title mb-10">{d.activeSponsors}</h2>
         <div className="grid grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-x-2 gap-y-6">
-          {active.map((s) => <SponsorTile key={s.id} sponsor={s} />)}
+          {active.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
         </div>
       </section>
-      {past.length > 0 && (
+      {past.length > 0 && pg.show('sponsorsPast') && (
         <section className="wrap pt-20">
-          <h2 className="mono mb-8 block">{d.pastSponsors}</h2>
+          <h2 className="sec-title mb-10">{d.pastSponsors}</h2>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-x-2 gap-y-6">
-            {past.map((s) => <SponsorTile key={s.id} sponsor={s} />)}
+            {past.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
           </div>
         </section>
       )}
-      <section className="wrap sec flex flex-wrap items-baseline justify-between gap-5">
-        <h2 className="h2">{d.sponsorCta}</h2>
-        <div className="flex flex-wrap items-baseline gap-6">
-          {s.email && <a href={`mailto:${s.email}`} className="mono underline decoration-line-strong underline-offset-4 hover:text-white">{s.email}</a>}
-          <Link href={`/${l}/contact`} className={buttonVariants()}>{d.writeUs}</Link>
-        </div>
-      </section>
+      {pg.show('sponsorsCta') && (
+        <section className="wrap sec flex flex-wrap items-baseline justify-between gap-5">
+          <h2 className="h2">{d.sponsorCta}</h2>
+          <div className="flex flex-wrap items-baseline gap-6">
+            {s.email && <a href={`mailto:${s.email}`} className="mono underline decoration-line-strong underline-offset-4 transition-colors hover:text-white hover:decoration-white">{s.email}</a>}
+            <Link href={`/${l}/contact`} className={buttonVariants()}>{d.writeUs}</Link>
+          </div>
+        </section>
+      )}
     </>
   )
 }

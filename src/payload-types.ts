@@ -236,6 +236,25 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Bu sayfadaki bölümleri göster / gizle. Kapalı bölüm sitede hiç görünmez; içeriği silinmez.
+   */
+  sections?: {
+    homeRobots?: boolean | null;
+    homeAchievements?: boolean | null;
+    homePhotos?: boolean | null;
+    homeSponsors?: boolean | null;
+    homeCta?: boolean | null;
+    aboutStats?: boolean | null;
+    aboutRankings?: boolean | null;
+    aboutPhotos?: boolean | null;
+    aboutTeams?: boolean | null;
+    robotsOffSeason?: boolean | null;
+    awardsNote?: boolean | null;
+    sponsorsPast?: boolean | null;
+    sponsorsCta?: boolean | null;
+    contactSocials?: boolean | null;
+  };
   seo?: {
     /**
      * Tarayıcı sekmesi ve arama sonucu başlığı. Boşsa sayfa başlığı kullanılır.
@@ -321,9 +340,13 @@ export interface Robot {
         event: string;
         title: string;
         /**
-         * Sadece önemli ödüller için işaretle: robot sayfasında ve ana sayfada mavi flama olarak görünür.
+         * Sadece önemli ödüller için işaretle: robot sayfasında, ana sayfada ve ödüller sayfasında flama olarak görünür.
          */
         banner?: boolean | null;
+        /**
+         * Doluysa otomatik mavi flama yerine bu görsel gösterilir (örn. kupa ya da ödül fotoğrafı). Yalnızca "Flama olarak göster" işaretliyse görünür.
+         */
+        image?: (number | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -649,6 +672,24 @@ export interface PagesSelect<T extends boolean = true> {
   heading?: T;
   intro?: T;
   body?: T;
+  sections?:
+    | T
+    | {
+        homeRobots?: T;
+        homeAchievements?: T;
+        homePhotos?: T;
+        homeSponsors?: T;
+        homeCta?: T;
+        aboutStats?: T;
+        aboutRankings?: T;
+        aboutPhotos?: T;
+        aboutTeams?: T;
+        robotsOffSeason?: T;
+        awardsNote?: T;
+        sponsorsPast?: T;
+        sponsorsCta?: T;
+        contactSocials?: T;
+      };
   seo?:
     | T
     | {
@@ -691,6 +732,7 @@ export interface RobotsSelect<T extends boolean = true> {
         event?: T;
         title?: T;
         banner?: T;
+        image?: T;
         id?: T;
       };
   videos?:
@@ -866,18 +908,11 @@ export interface SiteSetting {
   forms?: {
     joinUrl?: string | null;
   };
-  /**
-   * Sitede kullanılan yazı tipleri. Yalnızca önceden yüklenmiş aileler seçilebilir; seçim tüm sitede anında uygulanır.
-   */
-  fonts?: {
-    bodyFont?:
-      ('inter' | 'barlow' | 'archivo' | 'ibm-plex-sans' | 'hanken-grotesk' | 'manrope' | 'space-grotesk') | null;
-    displayFont?: ('anta' | 'saira' | 'space-grotesk' | 'archivo') | null;
-  };
   socials?:
     | {
         label: string;
         url: string;
+        showOnContact?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -1189,6 +1224,10 @@ export interface Home {
   heroTitle: string;
   heroTag?: string | null;
   /**
+   * Görselin başlığın arkasına gelen alt kısmının karartma oranı. Başlık okunmuyorsa artır, görsel çok koyuysa azalt.
+   */
+  heroOverlay?: number | null;
+  /**
    * Başarılar yanındaki görsel
    */
   sideImage?: (number | null) | Media;
@@ -1316,17 +1355,12 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | {
         joinUrl?: T;
       };
-  fonts?:
-    | T
-    | {
-        bodyFont?: T;
-        displayFont?: T;
-      };
   socials?:
     | T
     | {
         label?: T;
         url?: T;
+        showOnContact?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -1421,6 +1455,7 @@ export interface HomeSelect<T extends boolean = true> {
   heroImage?: T;
   heroTitle?: T;
   heroTag?: T;
+  heroOverlay?: T;
   sideImage?: T;
   pairImages?: T;
   highlights?:

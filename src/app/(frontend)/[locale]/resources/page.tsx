@@ -32,20 +32,20 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
               <h2 className="h2">{x.label}</h2>
               {x.description && <span className="mono">{x.description}</span>}
             </span>
-            <ArrowUpRight aria-hidden className="size-6 text-muted transition-colors group-hover:text-white" />
+            <ArrowUpRight aria-hidden className="size-6 text-muted transition-[color,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
             <span className="sr-only">({d.newTab})</span>
           </a>
         ))}
         {videos.length > 0 && (
           <>
-            <h2 className="mono mb-6 mt-16 block">{d.videosLabel}</h2>
+            <h2 className="sec-title mb-8 mt-16">{d.videosLabel}</h2>
             {videos.map((v) => (
               <a key={v.id} href={`https://youtu.be/${v.id}`} target="_blank" rel="noopener" className="row group md:grid-cols-[1fr_auto]">
                 <span className="flex flex-col gap-1">
                   <span className="text-[clamp(20px,2vw,26px)]">{v.title}</span>
                   <span className="mono">{v.robot}</span>
                 </span>
-                <ArrowUpRight aria-hidden className="size-6 text-muted transition-colors group-hover:text-white" />
+                <ArrowUpRight aria-hidden className="size-6 text-muted transition-[color,transform] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
                 <span className="sr-only">({d.newTab})</span>
               </a>
             ))}
