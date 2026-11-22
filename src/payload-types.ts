@@ -940,9 +940,9 @@ export interface UiText {
    */
   apply?: string | null;
   /**
-   * Varsayılan: Robotlarımız
+   * Varsayılan: Robotlar
    */
-  robots?: string | null;
+  robotsTitle?: string | null;
   /**
    * Varsayılan: İncele
    */
@@ -1375,7 +1375,7 @@ export interface UiTextSelect<T extends boolean = true> {
   join?: T;
   joinTeam?: T;
   apply?: T;
-  robots?: T;
+  robotsTitle?: T;
   detail?: T;
   allAwards?: T;
   allSponsors?: T;

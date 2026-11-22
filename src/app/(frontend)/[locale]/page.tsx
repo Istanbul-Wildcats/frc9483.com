@@ -45,7 +45,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </h1>
           <div className="flex animate-fade flex-wrap gap-3 [animation-delay:0.3s]">
             <Link href={`/${l}/join`} className={buttonVariants()}>{d.joinTeam}</Link>
-            <Link href={`/${l}/robots`} className={buttonVariants({ variant: 'ghost' })}>{d.robots}</Link>
+            <Link href={`/${l}/robots`} className={buttonVariants({ variant: 'ghost' })}>{d.robotsTitle}</Link>
           </div>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         className="wrap sec !pb-20"
         style={{ maxWidth: seasonRobots.length > 3 && seasonRobots.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
       >
-        <h2 className="sec-title mb-14 text-center">{d.robots}</h2>
+        <h2 className="sec-title mb-14 text-center">{d.robotsTitle}</h2>
         <div className="robot-grid gap-y-12" style={{ '--robot-cols': cols } as React.CSSProperties}>
           {seasonRobots.map((r) => (
             <div key={r.id} className="card lift flex flex-col items-center gap-5 text-center md:gap-7">
