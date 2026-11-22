@@ -9,8 +9,8 @@ import { getPayload } from 'payload'
 
 import type { Robot } from '@/payload-types'
 
-import ballistaCad from '../../../../../seed-assets/ballista-cad.png'
-import ballistaPhoto from '../../../../../seed-assets/ballista.jpg'
+import ballistaCad from '@/assets/seed/ballista-cad.png'
+import ballistaPhoto from '@/assets/seed/ballista.jpg'
 
 const KEY = 'd70f0773afe8eafa6901cff26c4ef0bc'
 
