@@ -22,8 +22,8 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
   const season = robots.filter((r) => !r.offSeason)
   const offSeason = robots.filter((r) => r.offSeason)
   const cols = season.length >= 6 ? 3 : Math.max(1, season.length)
-  // off-season cards stay tile-sized like the main grid: max 3 tracks even for a single robot
-  const offCols = offSeason.length >= 6 ? 3 : Math.min(3, Math.max(1, offSeason.length))
+  // off-season cards stay tile-sized like the main grid: always 3 tracks (a single robot fills one third, like a normal robot card)
+  const offCols = 3
   const card = (r: (typeof robots)[number]) => (
     <article key={r.id} className="flex flex-col items-center gap-6 text-center">
       <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[220px] md:h-[400px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
