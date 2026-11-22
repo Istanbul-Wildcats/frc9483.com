@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - '@payloadcms/db-postgres@3.94.1'
+  - '@payloadcms/drizzle@3.94.1'

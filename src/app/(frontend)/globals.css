@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  /* FRC 9483 design system: Anta for display AND body (single weight, 400) */
+  --font-sans: var(--font-anta), system-ui, sans-serif;
+  --font-display: var(--font-anta), system-ui, sans-serif;
+  --font-wordmark: var(--font-a4speed), var(--font-anta), system-ui, sans-serif;
+  --color-background: #000000;
+  --color-foreground: #ebeff9;
+  --color-white: #ffffff;
+  --color-muted: #acafb4;
+  --color-soft: #cbcbcb;
+  --color-line: #2a2c30;
+  --color-line-strong: #757981;
+  --color-panel: #111111;
+  --color-deep: #050505;
+  --radius-pill: 500px;
+  --animate-rise: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade: fade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-slow: slow 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  @keyframes rise { from { transform: translateY(112%) } to { transform: none } }
+  @keyframes fade { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+  @keyframes slow { from { transform: scale(1.12) } to { transform: scale(1) } }
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-background font-sans text-foreground antialiased; }
+  img { @apply block max-w-full; }
+  :focus-visible { outline: 2px solid #ebeff9; outline-offset: 4px; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1440px] px-5 md:px-16; }
+  .mono { @apply text-sm font-medium leading-snug text-muted; }
+  .h1 { @apply text-[clamp(38px,9vw,152px)] [overflow-wrap:anywhere] uppercase leading-[0.92] tracking-[0.01em]; font-family: var(--font-display); }
+  .h2 { @apply text-[clamp(26px,2.8vw,40px)] leading-[1.1]; font-family: var(--font-display); text-wrap: balance; }
+  .sec { @apply py-14 md:py-[120px]; }
+  .rule { @apply border-t border-line; }
+  .wordmark { font-family: var(--font-wordmark); font-weight: 700; font-synthesis: none; letter-spacing: 0.02em; }
+  /* A4 SPEED has no Turkish capitals: base letter + drawn mark (see Wordmark.tsx) */
+  .wm { position: relative; display: inline-block; line-height: 0.92; }
+  .wm::after { content: ''; position: absolute; background: currentColor; transform: skewX(-14deg); }
+  .wm-dot::after { width: 0.13em; height: 0.13em; left: 0.34em; top: -0.16em; }
+  .wm-dia::after { width: 0.12em; height: 0.12em; left: 0.22em; top: -0.15em; box-shadow: 0.2em 0 0 currentColor; }
+  .wm-ced::after { width: 0.09em; height: 0.15em; left: 0.3em; top: 0.7em; transform: skewX(-14deg) rotate(8deg); }
+  .wm-brv::after { width: 0.3em; height: 0.11em; left: 0.2em; top: -0.17em; background: none; border: 0.06em solid currentColor; border-top: 0; box-sizing: border-box; border-radius: 0 0 0.3em 0.3em; }
+  /* page names: A4 SPEED is wide, so they run smaller than the Anta size */
+  .h1.wordmark { font-size: clamp(30px, 5.6vw, 92px); }
+  /* hero title in A4 SPEED: 'OVERCHARGE' is ~8em wide, so the size follows the available width (page padding 20px, 64px from md) */
+  .h1.hero-wm { font-size: clamp(30px, calc((100vw - 40px) / 8.4), 150px); }
+  @media (min-width: 768px) { .h1.hero-wm { font-size: clamp(30px, calc((100vw - 128px) / 8.4), 150px); } }
+  .sec-title { @apply block text-[clamp(28px,3.4vw,52px)] uppercase leading-[1.05] tracking-[0.01em] text-white; font-family: var(--font-display); text-wrap: balance; }
+  .zoom { @apply relative block overflow-hidden bg-panel; }
+  /* Robot / product stage: no frame, just a soft backlight and a ground shadow so dark robots separate from the black page */
+  .stage { background: radial-gradient(ellipse 60% 50% at 50% 58%, rgb(255 255 255 / 0.1), transparent 75%); }
+  .stage > img { filter: drop-shadow(0 22px 20px rgb(0 0 0 / 0.9)); }
+  .zoom > img { @apply h-full w-full object-cover; transition: scale 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  /* Every photo reacts to hover (the whole card drives it for linked robot cards) */
+  .zoom:hover > img, a.zoom:focus-visible > img { scale: 1.04; }
+  .row { @apply grid items-center gap-1.5 border-t border-line py-[26px] transition-colors duration-200 md:gap-6; }
+  .row:hover { @apply bg-white/[0.04]; }
+  a.row:hover { @apply text-white; }
+  /* Cards: lift on hover; the whole card (not just the photo) drives the photo zoom */
+  .lift { @apply transition-[transform,box-shadow,border-color,background-color] duration-300; }
+  .lift:hover { @apply -translate-y-1; }
+  .card:hover a.zoom > img { scale: 1.04; }
+  /* Text links: underline grows from the left */
+  .link-u { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s; }
+  .link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
+  /* Robot cards: 1 column on mobile, --robot-cols side by side from md up (max 5; 6+ robots go back to 3+3) */
+  .robot-grid { @apply grid grid-cols-1 gap-x-10; }
+  @media (min-width: 768px) { .robot-grid { grid-template-columns: repeat(var(--robot-cols, 3), minmax(min(300px, 100%), 1fr)); } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  /* Movement tweens become instant; color/opacity feedback keeps its normal timing */
+  *, *::before, *::after { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow !important; }
+}
+
+/* Shared typography for rich text coming from Payload (custom pages, blog posts). */
+@layer components {
+  .prose-site { @apply max-w-[65ch] text-lg leading-relaxed text-soft; }
+  .prose-site > * + * { @apply mt-6; }
+  .prose-site h1, .prose-site h2 { @apply leading-tight text-white; font-family: var(--font-display); }
+  .prose-site h1 { @apply mt-14 text-[clamp(32px,4vw,56px)]; }
+  .prose-site h2 { @apply mt-12 text-[clamp(26px,2.8vw,40px)]; }
+  .prose-site h3 { @apply mt-10 text-2xl; }
+  .prose-site h4 { @apply mt-8 text-xl; }
+  .prose-site a { @apply text-white underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-white; }
+  .prose-site strong { @apply text-white; }
+  .prose-site ul { @apply list-disc pl-6; }
+  .prose-site ol { @apply list-decimal pl-6; }
+  .prose-site li + li { @apply mt-2; }
+  .prose-site blockquote { @apply border-l-2 border-line-strong pl-6 text-white; }
+  .prose-site hr { @apply border-line; }
+  .prose-site img { @apply h-auto w-full; }
+  .prose-site table { @apply w-full border-collapse text-left; }
+  .prose-site th, .prose-site td { @apply border-b border-line py-3 pr-4; }
+  .prose-site code { @apply bg-panel px-1.5 py-0.5 text-base; }
+}
+
+/* Gallery viewer: a focused, centred panel (native <dialog>), not full screen */
+@layer components {
+  dialog.lightbox { @apply m-auto max-h-[92dvh] w-[min(94vw,1180px)] max-w-none overflow-hidden border border-white/15 bg-deep p-0 text-foreground shadow-[0_40px_120px_rgba(0,0,0,0.8)]; }
+  dialog.lightbox[open] { animation: lb-in 0.2s ease-out; }
+  #mobile-menu { animation: menu-in 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-8px) } }
+  dialog.lightbox::backdrop { background: rgb(0 0 0 / 0.72); backdrop-filter: blur(10px); }
+  .lb-btn { @apply absolute z-10 inline-flex size-11 items-center justify-center rounded-pill border border-white/25 bg-black/55 text-white backdrop-blur transition-colors hover:bg-white hover:text-black; }
+  .lb-count { @apply absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-pill border border-white/20 bg-black/55 px-3.5 py-1.5 text-white backdrop-blur; }
+}
+@keyframes lb-in { from { opacity: 0; transform: translateY(8px) scale(0.985) } to { opacity: 1; transform: none } }
