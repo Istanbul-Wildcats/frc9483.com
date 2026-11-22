@@ -27,16 +27,19 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
           </>
         ) : (
           // one square card per product, fixed width: a single product never stretches into a bar. w-full: the section is flex-col items-start, so without it the grid shrinks to one column
-          <ul className="grid w-full grid-cols-[repeat(auto-fill,minmax(min(220px,100%),280px))] gap-x-6 gap-y-12">
+          <ul className="grid w-full grid-cols-[repeat(auto-fill,minmax(min(240px,100%),300px))] gap-6 md:gap-8">
             {items.map((p) => (
-              <li key={p.id} className="card lift flex flex-col items-center gap-4 text-center">
+              // each product is its own bordered card: image on top, name and stock underneath, so it is clear which text belongs to which product
+              <li key={p.id} className="card lift flex flex-col border border-line bg-panel/40 hover:border-white/50">
                 <div className="zoom stage aspect-square w-full">
-                  <Pic media={p.image} contain sizes="280px" />
+                  <Pic media={p.image} contain sizes="300px" />
                 </div>
-                <p className="text-[clamp(20px,2vw,26px)] leading-tight">{p.name}</p>
-                {typeof p.quantity === 'number' && (
-                  <p className="mono">{p.quantity > 0 ? `${p.quantity} ${d.unitsSuffix}` : d.soldOut}</p>
-                )}
+                <div className="flex flex-col gap-1.5 border-t border-line p-5">
+                  <p className="text-[clamp(20px,2vw,26px)] leading-tight text-white">{p.name}</p>
+                  {typeof p.quantity === 'number' && (
+                    <p className="mono">{p.quantity > 0 ? `${p.quantity} ${d.unitsSuffix}` : d.soldOut}</p>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
