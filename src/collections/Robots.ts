@@ -9,6 +9,7 @@ export const Robots: CollectionConfig = {
     { name: 'name', type: 'text', required: true },
     { name: 'slug', type: 'text', required: true, unique: true, index: true },
     { name: 'season', type: 'number', required: true, admin: { description: 'Örn. 2026' } },
+    { name: 'offSeason', type: 'checkbox', label: 'Sezon dışı', defaultValue: false, admin: { description: 'Sezon dışı (off-season) robotlar ana robot listesinde değil, ayrı "Sezon dışı robotlar" bölümünde görünür ve ana sayfada gösterilmez.' } },
     { name: 'game', type: 'text', admin: { description: 'Sezon oyunu, örn. Rebuilt' } },
     { name: 'image', type: 'upload', relationTo: 'media', admin: { description: 'Robotun ürün fotoğrafı (ana sayfa, robot listesi ve robot sayfası).' } },
     { name: 'seasonPhoto', type: 'upload', relationTo: 'media', admin: { description: 'Yalnızca Ödüller sayfasında, o sezonun bölümünde görünen fotoğraf.' } },

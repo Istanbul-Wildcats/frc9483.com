@@ -267,6 +267,10 @@ export interface Robot {
    */
   season: number;
   /**
+   * Sezon dışı (off-season) robotlar ana robot listesinde değil, ayrı "Sezon dışı robotlar" bölümünde görünür ve ana sayfada gösterilmez.
+   */
+  offSeason?: boolean | null;
+  /**
    * Sezon oyunu, örn. Rebuilt
    */
   game?: string | null;
@@ -664,6 +668,7 @@ export interface RobotsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   season?: T;
+  offSeason?: T;
   game?: T;
   image?: T;
   seasonPhoto?: T;
@@ -1167,6 +1172,10 @@ export interface UiText {
    * Varsayılan: CAD görseli
    */
   cadView?: string | null;
+  /**
+   * Varsayılan: Sezon dışı robotlar
+   */
+  offSeasonRobots?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1399,6 +1408,7 @@ export interface UiTextSelect<T extends boolean = true> {
   awardsNote?: T;
   sponsorStats?: T;
   cadView?: T;
+  offSeasonRobots?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -23,8 +23,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     list('sponsors', l, { where: { status: { not_equals: 'past' } }, sort: 'order' }),
   ])
   const pair = (home.pairImages ?? []).slice(0, 2)
+  // main season robots only; off-season robots live on the robots page in their own section
+  const seasonRobots = robots.filter((r) => !r.offSeason)
   // up to 5 robots side by side (page widens instead of shrinking cards); 6+ → two rows of 3
-  const cols = robots.length >= 6 ? 3 : Math.max(1, robots.length)
+  const cols = seasonRobots.length >= 6 ? 3 : Math.max(1, seasonRobots.length)
   return (
     <>
       <section className="relative flex min-h-[560px] md:min-h-[720px] items-end overflow-hidden bg-black">
@@ -44,11 +46,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section
         className="wrap sec !pb-20"
-        style={{ maxWidth: robots.length > 3 && robots.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
+        style={{ maxWidth: seasonRobots.length > 3 && seasonRobots.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
       >
         <h2 className="mono mb-14 block text-center">{d.robots}</h2>
         <div className="robot-grid gap-y-14" style={{ '--robot-cols': cols } as React.CSSProperties}>
-          {robots.map((r) => (
+          {seasonRobots.map((r) => (
             <div key={r.id} className="flex flex-col items-center gap-7 text-center">
               <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[210px] md:h-[380px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
               <div className="flex flex-col items-center gap-2.5"><span className="mono">{r.season}</span><h3 className="h2">{r.name}</h3></div>

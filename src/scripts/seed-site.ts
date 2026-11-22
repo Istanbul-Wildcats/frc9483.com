@@ -163,14 +163,14 @@ const run = async () => {
   // ---- Robots (awards: frc-events.firstinspires.org/team/9483) ----
   type RobotSeed = {
     videos: [string, string, string][]; slug: string; name: string; season: number; game: string
-    image?: number; seasonPhoto?: number; cadImage?: number; cd?: { url: string; title: string }
+    image?: number; seasonPhoto?: number; cadImage?: number; offSeason?: boolean; cd?: { url: string; title: string }
     awards: [string, string, string, string][]
     events: { en: string; tr: string; rank?: number; teams?: number; w?: number; l?: number; t?: number; resEn?: string; resTr?: string }[]
   }
   const robots: RobotSeed[] = [
     {
       videos: [['ZJKFeZ1GG5o', 'Build blog videosu 1', 'Build blog video 1'], ['qvgolT8bLL0', 'Build blog videosu 2', 'Build blog video 2']],
-      slug: 'ballista', name: 'Ballista', season: 2023, game: 'Charged Up', image: img.ballista, cadImage: img.ballistaCad, cd: { url: 'https://www.chiefdelphi.com/t/besiktas-rsports-9483-2023-off-season-build-blog/440340', title: '2023 Off-Season Build Blog' },
+      slug: 'ballista', name: 'Ballista', season: 2023, game: 'Charged Up', offSeason: true, image: img.ballista, cadImage: img.ballistaCad, cd: { url: 'https://www.chiefdelphi.com/t/besiktas-rsports-9483-2023-off-season-build-blog/440340', title: '2023 Off-Season Build Blog' },
       awards: [],
       // istatistikler panelden sonradan doldurulacak; sadece etkinlik adı hazır dursun
       events: [{ en: 'Esenler Robotics Competition', tr: 'Esenler Robotik Yarışması' }],
@@ -214,7 +214,7 @@ const run = async () => {
   ]
   for (const r of robots) {
     await upsert(payload, { collection: 'robots', where: { slug: { equals: r.slug } } }, (l) => ({
-      name: r.name, slug: r.slug, season: r.season, game: r.game, image: r.image, seasonPhoto: r.seasonPhoto,
+      name: r.name, slug: r.slug, season: r.season, game: r.game, offSeason: r.offSeason ?? false, image: r.image, seasonPhoto: r.seasonPhoto,
       ...(r.cadImage ? { cadImage: r.cadImage } : {}),
       events: r.events.map((e) => ({
         event: l === 'tr' ? e.tr : e.en,
