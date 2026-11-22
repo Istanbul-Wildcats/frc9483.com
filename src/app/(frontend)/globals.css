@@ -34,7 +34,7 @@
   .mono { @apply text-sm font-medium leading-snug text-muted; }
   .h1 { @apply text-[clamp(38px,9vw,152px)] [overflow-wrap:anywhere] uppercase leading-[0.92] tracking-[0.01em]; font-family: var(--font-display); }
   .h2 { @apply text-[clamp(26px,2.8vw,40px)] leading-[1.1]; font-family: var(--font-display); text-wrap: balance; }
-  .sec { @apply py-[72px] md:py-[120px]; }
+  .sec { @apply py-14 md:py-[120px]; }
   .rule { @apply border-t border-line; }
   .sec-title { @apply block text-[clamp(28px,3.4vw,52px)] uppercase leading-[1.05] tracking-[0.01em] text-white; font-family: var(--font-display); text-wrap: balance; }
   .zoom { @apply relative block overflow-hidden bg-panel; }

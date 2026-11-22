@@ -9,7 +9,7 @@ export function SponsorTile({ sponsor, newTab }: { sponsor: Sponsor; newTab: str
   const href = webUrl(sponsor.url)
   const tile = (
     <>
-      <div className="lift relative flex h-[120px] items-center justify-center border border-line p-5 text-center transition-colors group-hover:border-white/60 group-hover:bg-white/[0.05] group-focus-visible:border-white/60 [&_img]:transition-transform [&_img]:duration-300 group-hover:[&_img]:scale-105">
+      <div className="lift relative flex h-[96px] items-center justify-center border border-line p-3 sm:h-[120px] sm:p-5 text-center transition-colors group-hover:border-white/60 group-hover:bg-white/[0.05] group-focus-visible:border-white/60 [&_img]:transition-transform [&_img]:duration-300 group-hover:[&_img]:scale-105">
         {hasLogo ? <Pic media={sponsor.logo} contain sizes="260px" /> : <span className="h2 !text-[clamp(20px,2vw,26px)]">{sponsor.name}</span>}
       </div>
       <span className="sr-only">{sponsor.legalName || sponsor.name}{href ? ` (${newTab})` : ''}</span>

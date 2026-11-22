@@ -53,9 +53,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         style={{ maxWidth: seasonRobots.length > 3 && seasonRobots.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
       >
         <h2 className="sec-title mb-14 text-center">{d.robots}</h2>
-        <div className="robot-grid gap-y-14" style={{ '--robot-cols': cols } as React.CSSProperties}>
+        <div className="robot-grid gap-y-12" style={{ '--robot-cols': cols } as React.CSSProperties}>
           {seasonRobots.map((r) => (
-            <div key={r.id} className="card lift flex flex-col items-center gap-7 text-center">
+            <div key={r.id} className="card lift flex flex-col items-center gap-5 text-center md:gap-7">
               <Link href={`/${l}/robots/${r.slug}`} className="zoom stage h-[210px] md:h-[380px] w-full"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
               <div className="flex flex-col items-center gap-2.5"><span className="mono">{r.season}</span><h3 className="h2">{r.name}</h3></div>
               <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>
@@ -68,26 +68,26 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div>
           <h2 className="sec-title mb-8">{d.achievements}</h2>
           {home.highlights?.map((h) => (
-            <div key={h.id} className="row md:grid-cols-[90px_1fr]"><span className="mono">{h.year}</span><h3 className="h2">{h.title}</h3></div>
+            <div key={h.id} className="row grid-cols-[64px_1fr] md:grid-cols-[90px_1fr]"><span className="mono">{h.year}</span><h3 className="h2">{h.title}</h3></div>
           ))}
           <Link href={`/${l}/awards`} className={`${buttonVariants({ variant: 'ghost' })} mt-8`}>{d.allAwards}</Link>
         </div>
         <div>
-          <div className="zoom h-[230px] md:h-[420px]"><Pic media={home.sideImage} /></div>
+          <div className="zoom h-[200px] md:h-[420px]"><Pic media={home.sideImage} /></div>
           <AwardBanners awards={robots.flatMap((r) => (r.awards ?? []).map((a) => ({ ...a, season: r.season })))} className="mt-8" />
         </div>
       </section>}
 
       {pair.length > 0 && pg.show('homePhotos') && (
         <section className="grid grid-cols-[repeat(auto-fit,minmax(min(420px,100%),1fr))] gap-2 pb-2">
-          {pair.map((m, i) => <div key={i} className="zoom h-[310px] md:h-[560px]"><Pic media={m} /></div>)}
+          {pair.map((m, i) => <div key={i} className="zoom h-[220px] md:h-[560px]"><Pic media={m} /></div>)}
         </section>
       )}
 
       {sponsors.length > 0 && pg.show('homeSponsors') && (
         <section className="wrap sec !pb-20">
           <h2 className="sec-title mb-10">{d.sponsors}</h2>
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-x-2 gap-y-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] sm:gap-x-2 sm:gap-y-6">
             {sponsors.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
           </div>
           <Link href={`/${l}/sponsors`} className={`${buttonVariants({ variant: 'ghost' })} mt-8`}>{d.allSponsors}</Link>
