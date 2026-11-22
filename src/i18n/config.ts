@@ -16,7 +16,7 @@ export type PageSlug = (typeof pageSlugs)[number]
  */
 export const uiDefaults = {
   tr: {
-    join: 'Takıma katıl', joinTeam: 'Takıma katıl', apply: 'Başvur', robots: 'Robotlar',
+    join: 'Takıma katıl', joinTeam: 'Takıma katıl', apply: 'Başvur', robots: 'Robotlarımız',
     detail: 'İncele', allAwards: 'Tüm başarılarımız', allSponsors: 'Tüm sponsorlarımız',
     achievements: 'Başarılar', sponsors: 'Sponsorlarımız', seasonSummary: 'Sezon özeti',
     seasonAwards: 'Sezon ödülleri', highlights: 'Öne çıkan videolar', videosLabel: 'Videolar', playVideo: "YouTube'da izle", back: 'Robotlar', notFoundBack: 'Ana sayfaya dön',
@@ -31,7 +31,7 @@ export const uiDefaults = {
     sponsorStats: "Overcharge'in rakamları", cadView: 'CAD görseli', offSeasonRobots: 'Off Season Robotları',
   },
   en: {
-    join: 'Join the team', joinTeam: 'Join the team', apply: 'Apply', robots: 'Robots',
+    join: 'Join the team', joinTeam: 'Join the team', apply: 'Apply', robots: 'Our robots',
     detail: 'Details', allAwards: 'All achievements', allSponsors: 'All our sponsors',
     achievements: 'Achievements', sponsors: 'Our sponsors', seasonSummary: 'Season summary',
     seasonAwards: 'Season awards', highlights: 'Highlight videos', videosLabel: 'Videos', playVideo: 'Watch on YouTube', back: 'Robots', notFoundBack: 'Back to home',

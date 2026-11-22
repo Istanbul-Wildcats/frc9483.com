@@ -50,7 +50,6 @@
   /* hero title in A4 SPEED: 'OVERCHARGE' is ~8em wide, so the size follows the available width (page padding 20px, 64px from md) */
   .h1.hero-wm { font-size: clamp(30px, calc((100vw - 40px) / 8.4), 150px); }
   @media (min-width: 768px) { .h1.hero-wm { font-size: clamp(30px, calc((100vw - 128px) / 8.4), 150px); } }
-  .sec-title.wordmark { font-family: var(--font-wordmark); font-weight: 700; font-synthesis: none; font-size: clamp(24px, 3vw, 44px); }
   .sec-title { @apply block text-[clamp(28px,3.4vw,52px)] uppercase leading-[1.05] tracking-[0.01em] text-white; font-family: var(--font-display); text-wrap: balance; }
   .zoom { @apply relative block overflow-hidden bg-panel; }
   /* Robot / product stage: no frame, just a soft backlight and a ground shadow so dark robots separate from the black page */

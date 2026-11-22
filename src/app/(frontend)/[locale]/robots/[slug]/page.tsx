@@ -1,4 +1,3 @@
-import { SecTitle } from '@/components/site/SecTitle'
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { notFound } from 'next/navigation'
@@ -71,7 +70,7 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
       <div className="zoom stage h-[370px] md:h-[680px]"><Pic media={r.image} contain priority sizes="100vw" /></div>
       {r.cadImage && (
         <section className="wrap sec">
-          <SecTitle className="mb-8">{d.cadView}</SecTitle>
+          <h2 className="sec-title mb-8">{d.cadView}</h2>
           <div className="zoom stage h-[370px] md:h-[680px]"><Pic media={r.cadImage} contain sizes="100vw" /></div>
         </section>
       )}
@@ -84,7 +83,7 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
           </div>
           {hasAwards && (
             <div>
-              <SecTitle className="mb-8">{d.seasonAwards}</SecTitle>
+              <h2 className="sec-title mb-8">{d.seasonAwards}</h2>
               {r.awards?.map((a) => <div key={a.id} className="row gap-y-1 md:gap-y-1"><span className="mono">{a.event}</span><h3 className="text-[clamp(20px,2vw,26px)]">{a.title}</h3></div>)}
             </div>
           )}
@@ -92,12 +91,12 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
       )}
       {videos.length > 0 && (
         <section className="wrap sec !pt-0">
-          <SecTitle className="mb-8">{d.highlights}</SecTitle>
+          <h2 className="sec-title mb-8">{d.highlights}</h2>
           <VideoStrip videos={videos} name={`${r.name} ${d.highlights}`} play={d.playVideo} />
         </section>
       )}
       {sources.length > 0 && <section className="wrap pb-[120px]">
-        <SecTitle className="mb-8">{d.sources}</SecTitle>
+        <h2 className="sec-title mb-8">{d.sources}</h2>
         {sources.map((x) => (
           <a key={x.name} href={x.url} target="_blank" rel="noopener" className="row group md:grid-cols-[1fr_auto]">
             <span className="flex flex-col gap-1">

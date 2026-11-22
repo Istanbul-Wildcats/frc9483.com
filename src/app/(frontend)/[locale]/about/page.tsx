@@ -1,4 +1,3 @@
-import { SecTitle } from '@/components/site/SecTitle'
 import Link from 'next/link'
 
 import { Pic } from '@/components/site/Pic'
@@ -25,7 +24,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <div className="zoom h-[340px] md:h-[620px]"><Pic media={a.heroImage} priority sizes="100vw" /></div>
       <section className="wrap sec grid items-start gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
         <div className="flex flex-col gap-8">
-          <SecTitle>{d.who}</SecTitle>
+          <h2 className="sec-title">{d.who}</h2>
           <p className="text-[clamp(28px,3.4vw,52px)] leading-[1.15]">{a.lead}</p>
           {a.paragraphs?.map((p) => <p key={p.id} className="max-w-[680px] text-xl leading-relaxed text-soft">{p.text}</p>)}
           <p className="h2 !text-[clamp(24px,2.6vw,36px)]">{a.tagline}</p>
@@ -40,7 +39,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         ))}
       </section>}
       {pg.show('aboutRankings') && <section className="wrap pb-[120px]">
-        <SecTitle className="mb-8">{d.rankings}</SecTitle>
+        <h2 className="sec-title mb-8">{d.rankings}</h2>
         {a.rankings?.map((r) => (
           <div key={r.id} className="row md:grid-cols-[140px_1fr_1fr]"><span className="mono">{r.year}</span><h3 className="h2">{r.title}</h3><span className="mono md:justify-self-end">{r.result}</span></div>
         ))}
@@ -51,7 +50,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </section>
       )}
       {pg.show('aboutTeams') && <section className="rule wrap sec">
-        <SecTitle className="mb-8">{d.teams}</SecTitle>
+        <h2 className="sec-title mb-8">{d.teams}</h2>
         {a.teams?.map((x, i) => (
           <div key={x.id} className="row"><h3 className="h2">{x.name}</h3></div>
         ))}

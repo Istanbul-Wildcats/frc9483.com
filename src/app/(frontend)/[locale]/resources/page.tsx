@@ -1,4 +1,3 @@
-import { SecTitle } from '@/components/site/SecTitle'
 import { ArrowUpRight } from 'lucide-react'
 
 import { PageHeading } from '@/components/site/PageHeading'
@@ -39,7 +38,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
         ))}
         {videos.length > 0 && (
           <>
-            <SecTitle className="mb-8 mt-16">{d.videosLabel}</SecTitle>
+            <h2 className="sec-title mb-8 mt-16">{d.videosLabel}</h2>
             {videos.map((v) => (
               <a key={v.id} href={`https://youtu.be/${v.id}`} target="_blank" rel="noopener" className="row group md:grid-cols-[1fr_auto]">
                 <span className="flex flex-col gap-1">
