@@ -49,6 +49,9 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
     const id = youtubeId(v.url)
     return id ? [{ id, url: v.url, title: v.title }] : []
   })
+  // empty sections stay hidden until the team fills stats/awards from the panel
+  const hasStats = (r.events ?? []).some((e) => e.rank != null || e.wins || e.losses || e.ties)
+  const hasAwards = (r.awards?.length ?? 0) > 0
   return (
     <>
       <section className="wrap flex flex-col gap-10 py-12">
@@ -59,17 +62,27 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
       <div className="zoom h-[370px] md:h-[680px] bg-panel"><Pic media={r.image} contain priority sizes="100vw" /></div>
-      <section className="wrap sec grid grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-start gap-16">
-        <div>
-          <SeasonTable events={r.events ?? []} labels={{ title: d.seasonSummary, event: d.tableEvent, rank: d.tableRank, record: d.tableRecord, total: d.tableTotal, of: d.tableOf }} />
-          {r.epaRank && <div className="row md:grid-cols-[150px_1fr]"><span className="mono">EPA</span><span className="text-[clamp(20px,2vw,26px)]">{r.epaRank}</span></div>}
-          <AwardBanners awards={r.awards ?? []} season={r.season} className="mt-10" />
-        </div>
-        <div>
-          <h2 className="mono mb-6 block">{d.seasonAwards}</h2>
-          {r.awards?.map((a) => <div key={a.id} className="row gap-y-1 md:gap-y-1"><span className="mono">{a.event}</span><h3 className="text-[clamp(20px,2vw,26px)]">{a.title}</h3></div>)}
-        </div>
-      </section>
+      {r.cadImage && (
+        <section className="wrap sec">
+          <h2 className="mono mb-6 block">{d.cadView}</h2>
+          <div className="zoom h-[370px] md:h-[680px] bg-panel"><Pic media={r.cadImage} contain sizes="100vw" /></div>
+        </section>
+      )}
+      {(hasStats || hasAwards || r.epaRank) && (
+        <section className="wrap sec grid grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-start gap-16">
+          <div>
+            <SeasonTable events={r.events ?? []} labels={{ title: d.seasonSummary, event: d.tableEvent, rank: d.tableRank, record: d.tableRecord, total: d.tableTotal, of: d.tableOf }} />
+            {r.epaRank && <div className="row md:grid-cols-[150px_1fr]"><span className="mono">EPA</span><span className="text-[clamp(20px,2vw,26px)]">{r.epaRank}</span></div>}
+            <AwardBanners awards={r.awards ?? []} season={r.season} className="mt-10" />
+          </div>
+          {hasAwards && (
+            <div>
+              <h2 className="mono mb-6 block">{d.seasonAwards}</h2>
+              {r.awards?.map((a) => <div key={a.id} className="row gap-y-1 md:gap-y-1"><span className="mono">{a.event}</span><h3 className="text-[clamp(20px,2vw,26px)]">{a.title}</h3></div>)}
+            </div>
+          )}
+        </section>
+      )}
       {videos.length > 0 && (
         <section className="wrap sec !pt-0">
           <h2 className="mono mb-6 block">{d.highlights}</h2>

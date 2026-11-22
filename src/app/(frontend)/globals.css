@@ -42,6 +42,9 @@
   .row { @apply grid items-center gap-1.5 border-t border-line py-[26px] md:gap-6; }
   a.row { @apply transition-colors; }
   a.row:hover { @apply text-white; }
+  /* Robot cards: 1 column on mobile, --robot-cols side by side from md up (max 5; 6+ robots go back to 3+3) */
+  .robot-grid { @apply grid grid-cols-1 gap-x-10; }
+  @media (min-width: 768px) { .robot-grid { grid-template-columns: repeat(var(--robot-cols, 3), minmax(min(300px, 100%), 1fr)); } }
 }
 
 @media (prefers-reduced-motion: reduce) {

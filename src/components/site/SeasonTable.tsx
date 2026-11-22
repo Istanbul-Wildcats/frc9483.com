@@ -4,7 +4,7 @@ type Labels = { title: string; event: string; rank: string; record: string; tota
 
 /** Season results: one row per event (rank in field, W-L-T), plus the season total. */
 export function SeasonTable({ events, labels }: { events: NonNullable<Robot['events']>; labels: Labels }) {
-  if (!events.length) return null
+  if (!events.some((e) => e.rank != null || e.wins || e.losses || e.ties)) return null
   const sum = (k: 'wins' | 'losses' | 'ties') => events.reduce((n, e) => n + (e[k] ?? 0), 0)
   const rec = (w: number, l: number, t: number) => `${w}-${l}-${t}`
   return (

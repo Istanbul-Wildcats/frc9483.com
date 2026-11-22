@@ -17,7 +17,7 @@ export default async function AwardsPage({ params }: { params: Promise<{ locale:
   return (
     <>
       <PageHeading>{pg.heading}</PageHeading>
-      {robots.map((r) => (
+      {robots.filter((r) => r.awards?.length).map((r) => (
         <section key={r.id} className="wrap grid grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-start gap-16 pb-24">
           <div>
             <div className="zoom h-[250px] md:h-[460px]"><Pic media={r.seasonPhoto} /></div>

@@ -12,6 +12,7 @@ export const Robots: CollectionConfig = {
     { name: 'game', type: 'text', admin: { description: 'Sezon oyunu, örn. Rebuilt' } },
     { name: 'image', type: 'upload', relationTo: 'media', admin: { description: 'Robotun ürün fotoğrafı (ana sayfa, robot listesi ve robot sayfası).' } },
     { name: 'seasonPhoto', type: 'upload', relationTo: 'media', admin: { description: 'Yalnızca Ödüller sayfasında, o sezonun bölümünde görünen fotoğraf.' } },
+    { name: 'cadImage', type: 'upload', relationTo: 'media', admin: { description: 'Robotun CAD görseli; robot sayfasında ayrı bir bölümde görünür. Boşsa bölüm hiç gösterilmez.' } },
     {
       name: 'events',
       type: 'array',

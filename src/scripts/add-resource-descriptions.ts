@@ -2,7 +2,7 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
 
-const DESCRIPTIONS: Record<string, string> = {
+const DESCRIPTIONS: Record<string, Partial<Record<'tr' | 'en', string>>> = {
   FIRST: { tr: "FRC'i düzenleyen organizasyon.", en: 'The organization that runs FRC.' },
   'The Blue Alliance': { tr: 'Takımın maç, sonuç ve ödül arşivi.', en: "The team's match, result and award archive." },
   'FRC Events · 9483': { tr: 'Resmi etkinlik sonuçları.', en: 'Official event results.' },
@@ -16,8 +16,7 @@ for (const locale of ['tr', 'en'] as const) {
   await payload.updateGlobal({
     slug: 'resources',
     locale,
-    data: { links: g.links.map((x) => ({ ...x, description: DESCRIPTIONS[x.label]?.[locale] ?? x.description ?? '' })) },
-  })
+    data: { links: g.links.map((x) => ({ ...x, description: DESCRIPTIONS[x.label]?.[locale] ?? x.description ?? '' })) },  })
 }
 console.log('resources descriptions written')
 process.exit(0)

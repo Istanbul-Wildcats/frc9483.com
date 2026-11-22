@@ -87,6 +87,8 @@ const run = async () => {
     enigma: ['enigma.jpg', 'Enigma robotu', 'Enigma robot'],
     tidehunter: ['tidehunter.jpg', 'Tidehunter robotu', 'Tidehunter robot'],
     snapfire: ['snapfire.jpg', 'Snapfire robotu', 'Snapfire robot'],
+    ballista: ['ballista.jpg', 'Ballista robotu', 'Ballista robot'],
+    ballistaCad: ['ballista-cad.png', 'Ballista CAD görseli', 'Ballista CAD render'],
     driverStation: ['driver-station.jpg', 'Sürücü istasyonu ve takım üyeleri', 'The driver station and team members'],
     carry: ['robot-carry.jpg', 'Takım üyeleri 9483 robotunu sahada taşıyor', 'Team members carrying the 9483 robot on the field'],
     axa: ['logo-axa.png', 'AXA Sigorta', 'AXA Sigorta'],
@@ -159,9 +161,23 @@ const run = async () => {
   const team = img.hero
 
   // ---- Robots (awards: frc-events.firstinspires.org/team/9483) ----
-  const robots = [
+  type RobotSeed = {
+    videos: [string, string, string][]; slug: string; name: string; season: number; game: string
+    image?: number; seasonPhoto?: number; cadImage?: number; cd?: { url: string; title: string }
+    awards: [string, string, string, string][]
+    events: { en: string; tr: string; rank?: number; teams?: number; w?: number; l?: number; t?: number; resEn?: string; resTr?: string }[]
+  }
+  const robots: RobotSeed[] = [
+    {
+      videos: [['ZJKFeZ1GG5o', 'Build blog videosu 1', 'Build blog video 1'], ['qvgolT8bLL0', 'Build blog videosu 2', 'Build blog video 2']],
+      slug: 'ballista', name: 'Ballista', season: 2023, game: 'Charged Up', image: img.ballista, cadImage: img.ballistaCad, cd: { url: 'https://www.chiefdelphi.com/t/besiktas-rsports-9483-2023-off-season-build-blog/440340', title: '2023 Off-Season Build Blog' },
+      awards: [],
+      // istatistikler panelden sonradan doldurulacak; sadece etkinlik adı hazır dursun
+      events: [{ en: 'Esenler Robotics Competition', tr: 'Esenler Robotik Yarışması' }],
+    },
     {
       videos: [['PG1N4AD15CM', 'Temiz robot videosu · Johnson Q35', 'Clean robot video · Johnson Q35'], ['tOYFbRIJ8CA', 'Bump + HP otonomu', 'Bump + HP auto'], ['t_CEsoxMZCQ', 'Robonauts Open House', 'Robonauts Open House']], slug: 'enigma', name: 'Enigma', season: 2026, game: 'Rebuilt', image: img.enigma, seasonPhoto: img.p136,
+      cd: { url: 'https://www.chiefdelphi.com/t/team-9483-presents-enigma/515383', title: 'Team 9483 Presents: Enigma' },
       awards: [
         ['Istanbul Regional', 'Istanbul Regional', 'FIRST Leadership Award Finalist', 'Liderlik Ödülü Finalisti'],
         ['Istanbul Regional', 'Istanbul Regional', 'Industrial Design Award', 'Endüstriyel Tasarım Ödülü'],
@@ -174,6 +190,7 @@ const run = async () => {
     },
     {
       videos: [['o99StVtb6NM', 'Temiz robot videosu · Galileo Q92', 'Clean robot video · Galileo Q92'], ['a7SIaqHtu7k', '4 L4 + 3 Algae otonomu', '4 L4 + 3 Algae auto'], ['P6JnrWzIK8M', '4 L4 + 3 Algae otonomu (sansürsüz)', '4 L4 + 3 Algae auto (uncensored)'], ['MuF_vgHYVhk', 'Behind the Bumpers', 'Behind the Bumpers']], slug: 'tidehunter', name: 'Tidehunter', season: 2025, game: 'Reefscape', image: img.tidehunter, seasonPhoto: img.crowd,
+      cd: { url: 'https://www.chiefdelphi.com/t/team-9483-presents-tidehunter/494097', title: 'Team 9483 Presents: Tidehunter' },
       awards: [
         ['Bosphorus Regional', 'Bosphorus Regional', 'Autonomous Award', 'Otonom Ödülü'],
         ['Bosphorus Regional', 'Bosphorus Regional', 'Regional Winners', 'Regional Winner'],
@@ -184,6 +201,7 @@ const run = async () => {
     },
     {
       videos: [['YVTp38deSOQ', 'Temiz robot videosu', 'Clean robot video'], ['gJhbDuOYNgo', '7,5 Note otonomu', '7.5 Note auto'], ['8yha1qAHkDs', '7,5 Note otonomu (sansürsüz)', '7.5 Note auto (uncensored)'], ['QSppnOxWbDg', 'Robot POV · Milstein Q67', 'Robot POV · Milstein Q67'], ['jjyVmi1RW9k', 'Robot POV · Milstein Q92', 'Robot POV · Milstein Q92'], ['GaLm00wcnVE', 'Behind the Bumpers', 'Behind the Bumpers']], slug: 'snapfire', name: 'Snapfire', season: 2024, game: 'Crescendo', image: img.snapfire, seasonPhoto: img.p214,
+      cd: { url: 'https://www.chiefdelphi.com/t/team-9483-presents-snapfire/457771', title: 'Team 9483 Presents: Snapfire' },
       awards: [
         ['Milstein Division', 'Milstein Division', 'Championship Division Winner', 'Championship Division Winner'],
         ['Marmara Regional', 'Marmara Regional', 'Autonomous Award', 'Otonom Ödülü'],
@@ -197,8 +215,11 @@ const run = async () => {
   for (const r of robots) {
     await upsert(payload, { collection: 'robots', where: { slug: { equals: r.slug } } }, (l) => ({
       name: r.name, slug: r.slug, season: r.season, game: r.game, image: r.image, seasonPhoto: r.seasonPhoto,
+      ...(r.cadImage ? { cadImage: r.cadImage } : {}),
       events: r.events.map((e) => ({
-        event: l === 'tr' ? e.tr : e.en, rank: e.rank, teams: e.teams, wins: e.w, losses: e.l, ties: e.t,
+        event: l === 'tr' ? e.tr : e.en,
+        ...(e.rank !== undefined ? { rank: e.rank } : {}), ...(e.teams !== undefined ? { teams: e.teams } : {}),
+        ...(e.w !== undefined ? { wins: e.w } : {}), ...(e.l !== undefined ? { losses: e.l } : {}), ...(e.t !== undefined ? { ties: e.t } : {}),
         result: (l === 'tr' ? e.resTr : e.resEn) || undefined,
       })),
       awards: r.awards.map(([ee, et, ae, at]) => ({ event: l === 'tr' ? et : ee, title: ae, banner: /Winner|Woodie Flowers Finalist/.test(ae) })),
@@ -207,6 +228,7 @@ const run = async () => {
         tba: `https://www.thebluealliance.com/team/9483/${r.season}`,
         statbotics: `https://www.statbotics.io/team/9483/${r.season}`,
         firstEvents: `https://frc-events.firstinspires.org/${r.season}/team/9483`,
+        ...(r.cd ? { chiefDelphi: r.cd.url, chiefDelphiTitle: r.cd.title } : {}),
       },
     }))
   }
@@ -302,7 +324,7 @@ const run = async () => {
     ].map(([href, tr, en]) => ({ href, label: l === 'tr' ? tr : en })),
   }))
 
-  await upsert(payload, { global: 'resources' }, () => ({
+  await upsert(payload, { global: 'resources' }, (l) => ({
     links: [
       { label: 'FIRST', url: 'https://www.firstinspires.org', description: l === 'tr' ? "FRC'i düzenleyen organizasyon." : 'The organization that runs FRC.' },
       { label: 'The Blue Alliance', url: 'https://www.thebluealliance.com/team/9483', description: l === 'tr' ? "Takımın maç, sonuç ve ödül arşivi." : "The team's match, result and award archive." },
@@ -317,7 +339,7 @@ const run = async () => {
   const seoCopy: Record<(typeof pageSlugs)[number], [string, string]> = {
     home: ['FIRST Robotics Competition takımı Overcharge (9483). İstanbul\'dan 2024 Milstein Division şampiyonu.', 'Overcharge (9483), a FIRST Robotics Competition team from Istanbul. 2024 Milstein Division winners.'],
     about: ['Overcharge\'in hikâyesi, hedefleri, sezon sonuçları ve takımdaki ekipler.', 'The story, goals, season results and sub-teams of Overcharge.'],
-    robots: ['Overcharge\'in 2024, 2025 ve 2026 sezonlarında yarışan robotları: Snapfire, Tidehunter ve Enigma.', 'The robots Overcharge competed with in 2024, 2025 and 2026: Snapfire, Tidehunter and Enigma.'],
+    robots: ['Overcharge\'in 2023, 2024, 2025 ve 2026 sezonlarında yarışan robotları: Ballista, Snapfire, Tidehunter ve Enigma.', 'The robots Overcharge competed with in the 2023, 2024, 2025 and 2026 seasons: Ballista, Snapfire, Tidehunter and Enigma.'],
     awards: ['Overcharge\'in bölgesel ve championship ödülleri, sezon sezon.', 'Overcharge regional and championship awards, season by season.'],
     sponsors: ['Overcharge\'i destekleyen sponsorlar ve sponsor olmak için iletişim.', 'The sponsors supporting Overcharge, and how to become one.'],
     join: ['Overcharge robotik takımına katılmak için başvuru bilgileri.', 'How to apply to join the Overcharge robotics team.'],

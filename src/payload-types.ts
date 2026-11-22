@@ -279,6 +279,10 @@ export interface Robot {
    */
   seasonPhoto?: (number | null) | Media;
   /**
+   * Robotun CAD görseli; robot sayfasında ayrı bir bölümde görünür. Boşsa bölüm hiç gösterilmez.
+   */
+  cadImage?: (number | null) | Media;
+  /**
    * Robot sayfasındaki sezon tablosu. FIRST Events sayfasındaki sıralama ve rekor değerleri.
    */
   events?:
@@ -663,6 +667,7 @@ export interface RobotsSelect<T extends boolean = true> {
   game?: T;
   image?: T;
   seasonPhoto?: T;
+  cadImage?: T;
   events?:
     | T
     | {
@@ -1158,6 +1163,10 @@ export interface UiText {
    * Varsayılan: Overcharge'in rakamları
    */
   sponsorStats?: string | null;
+  /**
+   * Varsayılan: CAD görseli
+   */
+  cadView?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1389,6 +1398,7 @@ export interface UiTextSelect<T extends boolean = true> {
   buildThread?: T;
   awardsNote?: T;
   sponsorStats?: T;
+  cadView?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
