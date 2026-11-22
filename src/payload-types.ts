@@ -182,7 +182,6 @@ export interface Media {
    * Sadece dosya yüklerken uygulanır. Logo seçeneği siyah zeminli beyaz logoyu şeffaf, beyaz bir PNG’ye çevirir. Siyah robot fotoğrafları için kullanma: robotun siyah kısımlarını da siler.
    */
   processing?: ('none' | 'png' | 'logo') | null;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -612,7 +611,6 @@ export interface UsersSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   processing?: T;
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

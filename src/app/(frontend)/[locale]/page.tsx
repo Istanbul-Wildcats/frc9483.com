@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { AwardBanners } from '@/components/site/AwardBanners'
 import { Pic } from '@/components/site/Pic'
 import { SponsorTile } from '@/components/site/SponsorTile'
 import { buttonVariants } from '@/components/ui/button'
@@ -60,7 +61,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           ))}
           <Link href={`/${l}/awards`} className={`${buttonVariants({ variant: 'ghost' })} mt-8`}>{d.allAwards}</Link>
         </div>
-        <div className="zoom h-[230px] md:h-[420px]"><Pic media={home.sideImage} /></div>
+        <div>
+          <div className="zoom h-[230px] md:h-[420px]"><Pic media={home.sideImage} /></div>
+          <AwardBanners awards={robots.flatMap((r) => (r.awards ?? []).map((a) => ({ ...a, season: r.season })))} className="mt-8" />
+        </div>
       </section>
 
       {pair.length > 0 && (

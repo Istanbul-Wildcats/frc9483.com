@@ -3,20 +3,20 @@ import { Roboto } from 'next/font/google'
 // Same typeface and metrics The Blue Alliance uses for its team-page banners (tba_combined_style .banner)
 const roboto = Roboto({ subsets: ['latin', 'latin-ext'], weight: ['400', '700'], style: ['normal', 'italic'] })
 
-type Award = { id?: string | null; event: string; title: string; banner?: boolean | null }
+type Award = { id?: string | null; event: string; title: string; banner?: boolean | null; season?: number }
 
 /** TBA-style award name: "Regional Winner(s)" -> "Winner" */
 const shortTitle = (t: string) => t.replace(/^Regional\s+/i, '').replace(/Winners$/i, 'Winner')
 
 /** Pennants for the awards flagged "Flama olarak göster", laid out like the banners on thebluealliance.com */
-export function AwardBanners({ awards, season, className = '' }: { awards: Award[]; season: number; className?: string }) {
+export function AwardBanners({ awards, season, className = '' }: { awards: Award[]; season?: number; className?: string }) {
   const shown = awards.filter((a) => a.banner)
   if (!shown.length) return null
   return (
     <ul lang="en" className={`${roboto.className} flex flex-wrap gap-x-4 gap-y-0 text-[14px] leading-[1.2] ${className}`}>
       {shown.map((a, i) => {
         const name = shortTitle(a.title)
-        const event = `${season} ${a.event}`
+        const event = `${a.season ?? season} ${a.event}`
         return (
           <li key={a.id ?? i} className="relative mb-10 h-[170px] w-[140px] bg-[#0f4bcb] p-2 text-center text-white [filter:drop-shadow(0_5px_5px_rgba(0,0,0,.1))]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
