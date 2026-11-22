@@ -11,7 +11,7 @@ export const Posts: CollectionConfig = {
   defaultSort: '-date',
   versions: { drafts: true },
   fields: [
-    { name: 'title', type: 'text', required: true, localized: true },
+    { name: 'title', type: 'text', required: true, localized: true, admin: { description: 'Dil sekmesine göre ayrı yazılır: önce Türkçeyi, sonra sağ üstten English sekmesine geçip çeviriyi gir. English boş kalırsa sitenin İngilizce sayfasında Türkçe metin gösterilir.' } },
     {
       name: 'slug',
       type: 'text',
@@ -26,7 +26,7 @@ export const Posts: CollectionConfig = {
     { name: 'date', type: 'date', required: true, defaultValue: () => new Date().toISOString() },
     { name: 'excerpt', type: 'textarea', localized: true, maxLength: 200, admin: { description: 'Kısa özet: blog listesinde ve paylaşım önizlemesinde (WhatsApp, X, LinkedIn…) görünür.' } },
     { name: 'cover', type: 'upload', relationTo: 'media', admin: { description: 'Paylaşım önizlemesinde görünen görsel de budur.' } },
-    { name: 'content', type: 'richText', localized: true },
+    { name: 'content', type: 'richText', localized: true, admin: { description: 'Her dil ayrı yazılır (English sekmesi). Çeviri otomatik yapılmaz; boşsa Türkçe metin gösterilir.' } },
     {
       name: 'seo',
       type: 'group',
