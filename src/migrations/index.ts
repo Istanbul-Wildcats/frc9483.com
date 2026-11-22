@@ -25,4 +25,9 @@ export const migrations = [
     down: migration_20261122_161200_backfill_drift.down,
     name: '20261122_161200_backfill_drift'
   },
+  {
+    up: migration_20261122_201022_add_off_season.up,
+    down: migration_20261122_201022_add_off_season.down,
+    name: '20261122_201022_add_off_season'
+  },
 ];
