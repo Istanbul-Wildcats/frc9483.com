@@ -39,12 +39,12 @@
   .rule { @apply border-t border-line; }
   .wordmark { font-family: var(--font-wordmark); font-weight: 700; font-synthesis: none; letter-spacing: 0.02em; }
   /* A4 SPEED has no Turkish capitals: base letter + drawn mark (see Wordmark.tsx) */
-  .wm { position: relative; display: inline-block; }
+  .wm { position: relative; display: inline-block; line-height: 0.92; }
   .wm::after { content: ''; position: absolute; background: currentColor; transform: skewX(-14deg); }
-  .wm-dot::after { width: 0.13em; height: 0.13em; left: 0.34em; top: -0.14em; }
-  .wm-dia::after { width: 0.3em; height: 0.12em; left: 0.2em; top: -0.12em; background: radial-gradient(circle, currentColor 0 0.06em, transparent 0.065em) 0 0 / 0.15em 0.12em repeat-x; }
-  .wm-ced::after { width: 0.09em; height: 0.15em; left: 0.3em; top: 0.74em; transform: skewX(-14deg) rotate(8deg); }
-  .wm-brv::after { width: 0.3em; height: 0.11em; left: 0.2em; top: -0.13em; background: none; border: 0.06em solid currentColor; border-top: 0; box-sizing: border-box; border-radius: 0 0 0.3em 0.3em; }
+  .wm-dot::after { width: 0.13em; height: 0.13em; left: 0.34em; top: -0.16em; }
+  .wm-dia::after { width: 0.12em; height: 0.12em; left: 0.22em; top: -0.15em; box-shadow: 0.2em 0 0 currentColor; }
+  .wm-ced::after { width: 0.09em; height: 0.15em; left: 0.3em; top: 0.7em; transform: skewX(-14deg) rotate(8deg); }
+  .wm-brv::after { width: 0.3em; height: 0.11em; left: 0.2em; top: -0.17em; background: none; border: 0.06em solid currentColor; border-top: 0; box-sizing: border-box; border-radius: 0 0 0.3em 0.3em; }
   /* page names: A4 SPEED is wide, so they run smaller than the Anta size */
   .h1.wordmark { font-size: clamp(30px, 5.6vw, 92px); }
   .sec-title.wordmark { font-family: var(--font-wordmark); font-weight: 700; font-synthesis: none; font-size: clamp(24px, 3vw, 44px); }
