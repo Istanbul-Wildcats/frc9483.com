@@ -14,20 +14,20 @@ export function AwardBanners({ awards, season, className = '' }: { awards: Award
   const shown = awards.filter((a) => a.banner)
   if (!shown.length) return null
   return (
-    <ul lang="en" className={`flex flex-wrap gap-x-4 gap-y-0 text-[14px] leading-[1.2] ${className}`}>
+    <ul lang="en" className={`flex snap-x snap-mandatory gap-x-4 gap-y-0 overflow-x-auto pt-2 text-[14px] leading-[1.2] md:flex-wrap md:overflow-visible ${className}`}>
       {shown.map((a, i) => {
         const name = shortTitle(a.title)
         const event = `${a.season ?? season} ${a.event}`
         // a custom picture from the panel replaces the generated pennant
         if (a.image && typeof a.image === 'object' && a.image.url) {
           return (
-            <li key={a.id ?? i} className="lift relative mb-10 h-[170px] w-[140px]" title={`${name} · ${event}`}>
+            <li key={a.id ?? i} className="lift relative mb-6 h-[170px] w-[140px] shrink-0 snap-start md:mb-10" title={`${name} · ${event}`}>
               <Pic media={a.image} contain sizes="140px" />
             </li>
           )
         }
         return (
-          <li key={a.id ?? i} className="lift relative mb-10 h-[170px] w-[140px] bg-[#0f4bcb] p-2 text-center text-white [filter:drop-shadow(0_5px_5px_rgba(0,0,0,.1))] hover:brightness-110">
+          <li key={a.id ?? i} className="lift relative mb-6 h-[170px] w-[140px] shrink-0 snap-start bg-[#0f4bcb] md:mb-10 p-2 text-center text-white [filter:drop-shadow(0_5px_5px_rgba(0,0,0,.1))] hover:brightness-110">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/first-icon.svg" alt="" width={75} height={45} className="mx-auto my-2.5 max-h-[45px] w-[75px]" />
             <div className="table h-[35px] w-full" style={{ margin: '3px 0' }}>
