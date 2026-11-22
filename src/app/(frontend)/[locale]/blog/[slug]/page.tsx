@@ -1,10 +1,13 @@
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { Pic } from '@/components/site/Pic'
 import { RichBody } from '@/components/site/RichBody'
+import { buttonVariants } from '@/components/ui/button'
 import { isLocale, locales } from '@/i18n/config'
 import { formatDate } from '@/lib/format'
-import { global, list } from '@/lib/payload'
+import { getPage, global, list } from '@/lib/payload'
 import { abs, buildMetadata, SITE_URL } from '@/lib/seo'
 import { lexicalText, snippet } from '@/lib/text'
 
@@ -54,7 +57,7 @@ export default async function PostPage({ params }: Props) {
   const post = await load(locale, slug)
   if (!post) notFound()
   const { p, locale: l } = post
-  const s = await global('site-settings', l)
+  const [s, blog] = await Promise.all([global('site-settings', l), getPage('blog', l)])
   const url = `${SITE_URL}/${l}/blog/${slug}`
   const jsonLd = [
     {
@@ -83,15 +86,27 @@ export default async function PostPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
-      <section className="wrap flex flex-col gap-6 pt-24 pb-14">
-        <time dateTime={p.date} className="mono">{formatDate(p.date, l)}</time>
-        <h1 className="h1">{p.title}</h1>
-        {p.excerpt && <p className="h2 max-w-[820px] text-soft">{p.excerpt}</p>}
-      </section>
-      {p.cover && <div className="zoom h-[310px] md:h-[560px]"><Pic media={p.cover} priority sizes="100vw" /></div>}
-      <article className="wrap sec max-w-[820px]">
-        <RichBody data={p.content} />
-      </article>
+      <div className="wrap">
+        <div className="mx-auto max-w-[820px]">
+          <header className="flex flex-col gap-5 pt-12 pb-10 md:pt-16">
+            <Link href={`/${l}/blog`} className="inline-flex min-h-11 items-center gap-2 self-start text-sm text-soft transition-colors hover:text-white">
+              <ArrowLeft aria-hidden className="size-4" /> {blog.heading}
+            </Link>
+            <time dateTime={p.date} className="mono">{formatDate(p.date, l)}</time>
+            <h1 className="h1 !text-[clamp(32px,5.2vw,64px)] !normal-case !leading-[1.08] text-balance">{p.title}</h1>
+            {p.excerpt && <p className="text-xl leading-relaxed text-soft">{p.excerpt}</p>}
+          </header>
+          {p.cover && <div className="zoom aspect-[16/9] w-full"><Pic media={p.cover} priority sizes="(min-width: 900px) 820px, 100vw" /></div>}
+          <article className="py-12 md:py-16 [&_.prose-site]:max-w-none">
+            <RichBody data={p.content} />
+          </article>
+          <div className="rule py-10">
+            <Link href={`/${l}/blog`} className={buttonVariants({ variant: 'ghost', size: 'sm' })}>
+              <ArrowLeft aria-hidden className="size-4" /> {blog.heading}
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

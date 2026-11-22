@@ -26,8 +26,8 @@ export default async function ShopPage({ params }: { params: Promise<{ locale: s
             <Link href={`/${l}/contact`} className="mono underline decoration-line-strong underline-offset-4 hover:text-white">{d.orderNote}</Link>
           </>
         ) : (
-          // one square card per product, fixed width: a single product never stretches into a bar
-          <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(220px,100%),280px))] gap-x-6 gap-y-12">
+          // one square card per product, fixed width: a single product never stretches into a bar. w-full: the section is flex-col items-start, so without it the grid shrinks to one column
+          <ul className="grid w-full grid-cols-[repeat(auto-fill,minmax(min(220px,100%),280px))] gap-x-6 gap-y-12">
             {items.map((p) => (
               <li key={p.id} className="card lift flex flex-col items-center gap-4 text-center">
                 <div className="zoom stage aspect-square w-full">
