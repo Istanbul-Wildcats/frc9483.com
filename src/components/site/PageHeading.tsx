@@ -1,7 +1,9 @@
+import { wordmarkClass } from '@/lib/text'
+
 export function PageHeading({ children, center }: { children: React.ReactNode; center?: boolean }) {
   return (
     <section className={`wrap pt-24 pb-14 ${center ? 'text-center' : ''}`}>
-      <h1 className="h1">
+      <h1 className={`h1 ${wordmarkClass(children)}`}>
         {children}
       </h1>
     </section>

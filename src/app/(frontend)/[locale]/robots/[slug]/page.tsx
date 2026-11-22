@@ -9,6 +9,7 @@ import { VideoStrip } from '@/components/site/VideoStrip'
 import { isLocale, locales } from '@/i18n/config'
 import { getT, list } from '@/lib/payload'
 import { buildMetadata } from '@/lib/seo'
+import { wordmarkClass } from '@/lib/text'
 import { youtubeId } from '@/lib/youtube'
 
 // Pre-render every robot in every language so navigating to one is instant (no server work per click).
@@ -62,7 +63,7 @@ export default async function RobotPage({ params }: { params: Promise<{ locale: 
       <section className="wrap flex flex-col gap-10 py-12">
         <Link href={`/${l}/robots`} className="inline-flex min-h-11 items-center self-start text-sm text-soft hover:text-white"><ArrowLeft aria-hidden className="size-4" /> {d.back}</Link>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h1 className="h1">{r.name}</h1>
+          <h1 className={`h1 ${wordmarkClass(r.name)}`}>{r.name}</h1>
           <span className="mono">{[r.season, r.game].filter(Boolean).join(', ')}</span>
         </div>
       </section>

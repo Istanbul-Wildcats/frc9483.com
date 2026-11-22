@@ -6,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { isLocale } from '@/i18n/config'
 import { getPage, getT, list } from '@/lib/payload'
 import { pageMetadata } from '@/lib/seo'
+import { wordmarkClass } from '@/lib/text'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -29,7 +30,7 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
     <article key={r.id} className={`card lift flex flex-col items-center gap-6 text-center ${extra}`}>
       <Link href={`/${l}/robots/${r.slug}`} className="zoom stage h-[220px] md:h-[400px] w-full"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
       <span className="mono">{r.season}</span>
-      <h2 className="h2">{r.name}</h2>
+      <h2 className={`h2 ${wordmarkClass(r.name)}`}>{r.name}</h2>
       <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>
     </article>
   )

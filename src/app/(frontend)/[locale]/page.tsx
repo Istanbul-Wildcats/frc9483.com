@@ -7,6 +7,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { isLocale } from '@/i18n/config'
 import { getPage, getT, global, list } from '@/lib/payload'
 import { pageMetadata } from '@/lib/seo'
+import { wordmarkClass } from '@/lib/text'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -38,7 +39,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute inset-0" style={{ background: scrim }} />
         <div className="wrap relative z-10 pb-14">
           <span className="mono animate-fade text-foreground [animation-delay:0.15s]">{home.heroTag}</span>
-          <h1 className="h1 my-4 mb-10 block overflow-hidden pb-[0.08em] text-[clamp(48px,10vw,160px)] [overflow-wrap:anywhere] [text-shadow:0_2px_32px_rgb(0_0_0/0.55)]">
+          <h1 className={`h1 ${wordmarkClass(home.heroTitle)} my-4 mb-10 block overflow-hidden pb-[0.08em] text-[clamp(48px,10vw,160px)] [overflow-wrap:anywhere] [text-shadow:0_2px_32px_rgb(0_0_0/0.55)]`}>
             <span className="block animate-rise [animation-delay:0.05s]">{home.heroTitle}</span>
           </h1>
           <div className="flex animate-fade flex-wrap gap-3 [animation-delay:0.3s]">
@@ -57,7 +58,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           {seasonRobots.map((r) => (
             <div key={r.id} className="card lift flex flex-col items-center gap-5 text-center md:gap-7">
               <Link href={`/${l}/robots/${r.slug}`} className="zoom stage h-[210px] md:h-[380px] w-full"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
-              <div className="flex flex-col items-center gap-2.5"><span className="mono">{r.season}</span><h3 className="h2">{r.name}</h3></div>
+              <div className="flex flex-col items-center gap-2.5"><span className="mono">{r.season}</span><h3 className={`h2 ${wordmarkClass(r.name)}`}>{r.name}</h3></div>
               <Link href={`/${l}/robots/${r.slug}`} className={buttonVariants({ variant: 'ghost' })}>{d.detail}</Link>
             </div>
           ))}

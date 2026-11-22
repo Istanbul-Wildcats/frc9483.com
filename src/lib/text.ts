@@ -24,3 +24,10 @@ export function snippet(text: string, max = 155) {
   const cut = clean.slice(0, max - 1)
   return cut.slice(0, cut.lastIndexOf(' ') > 80 ? cut.lastIndexOf(' ') : undefined).replace(/[,;:.\s-]+$/, '') + '…'
 }
+
+/**
+ * A4 SPEED only has basic Latin glyphs (no ç ğ ı ö ş ü İ). Headings that fit entirely get the wordmark face;
+ * anything else keeps Anta, so a Turkish heading never mixes two typefaces letter by letter.
+ */
+export const wordmarkFits = (t: unknown): t is string => typeof t === 'string' && /^[\x20-\x7E]+$/.test(t)
+export const wordmarkClass = (t: unknown) => (wordmarkFits(t) ? 'wordmark' : '')

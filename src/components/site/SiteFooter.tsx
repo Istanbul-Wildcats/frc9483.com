@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import type { Locale } from '@/i18n/config'
 import { getT, global, hasPosts } from '@/lib/payload'
+import { wordmarkFits } from '@/lib/text'
 
 export async function SiteFooter({ locale }: { locale: Locale }) {
   const [s, nav, blogOpen] = await Promise.all([global('site-settings', locale), global('navigation', locale), hasPosts()])
@@ -10,7 +11,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="rule pt-20 pb-10">
       <div className="wrap flex flex-col gap-14">
         <div className="flex flex-wrap items-end justify-between gap-8">
-          <span className="text-[clamp(40px,10vw,160px)] leading-[0.92] tracking-[0.01em]" style={{ fontFamily: 'var(--font-display)' }}>{s.footerTitle}</span>
+          <span className="text-[clamp(40px,10vw,160px)] leading-[0.92] tracking-[0.01em]" style={{ fontFamily: wordmarkFits(s.footerTitle) ? 'var(--font-wordmark)' : 'var(--font-display)' }}>{s.footerTitle}</span>
           <span className="mono text-sm">{s.footerSubtitle}</span>
         </div>
         <div className="grid gap-10 sm:grid-cols-2">
