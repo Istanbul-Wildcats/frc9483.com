@@ -1,3 +1,4 @@
+import { SecTitle } from '@/components/site/SecTitle'
 import Link from 'next/link'
 
 import { AwardBanners } from '@/components/site/AwardBanners'
@@ -54,7 +55,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         className="wrap sec !pb-20"
         style={{ maxWidth: seasonRobots.length > 3 && seasonRobots.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
       >
-        <h2 className="sec-title mb-14 text-center">{d.robots}</h2>
+        <SecTitle className="mb-14 text-center">{d.robots}</SecTitle>
         <div className="robot-grid gap-y-12" style={{ '--robot-cols': cols } as React.CSSProperties}>
           {seasonRobots.map((r) => (
             <div key={r.id} className="card lift flex flex-col items-center gap-5 text-center md:gap-7">
@@ -68,7 +69,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {pg.show('homeAchievements') && <section className="rule wrap sec grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] items-start gap-16">
         <div>
-          <h2 className="sec-title mb-8">{d.achievements}</h2>
+          <SecTitle className="mb-8">{d.achievements}</SecTitle>
           {home.highlights?.map((h) => (
             <div key={h.id} className="row grid-cols-[64px_1fr] md:grid-cols-[90px_1fr]"><span className="mono">{h.year}</span><h3 className="h2">{h.title}</h3></div>
           ))}
@@ -88,7 +89,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {sponsors.length > 0 && pg.show('homeSponsors') && (
         <section className="wrap sec !pb-20">
-          <h2 className="sec-title mb-10">{d.sponsors}</h2>
+          <SecTitle className="mb-10">{d.sponsors}</SecTitle>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] sm:gap-x-2 sm:gap-y-6">
             {sponsors.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
           </div>

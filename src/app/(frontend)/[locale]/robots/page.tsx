@@ -1,3 +1,4 @@
+import { SecTitle } from '@/components/site/SecTitle'
 import Link from 'next/link'
 
 import { PageHeading } from '@/components/site/PageHeading'
@@ -46,7 +47,7 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
       {offSeason.length > 0 && pg.show('robotsOffSeason') && (
         <>
           <section className="wrap">
-            <h2 className="sec-title mb-10">{d.offSeasonRobots}</h2>
+            <SecTitle className="mb-10">{d.offSeasonRobots}</SecTitle>
           </section>
           <section className="robot-grid wrap gap-y-16 pb-36" style={{ '--robot-cols': offCols } as React.CSSProperties}>
             {offSeason.map((r) => card(r, offSeason.length === 1 ? 'md:col-start-2' : ''))}

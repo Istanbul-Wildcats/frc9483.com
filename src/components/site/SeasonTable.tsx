@@ -1,3 +1,4 @@
+import { SecTitle } from './SecTitle'
 import type { Robot } from '@/payload-types'
 
 type Labels = { title: string; event: string; rank: string; record: string; total: string; of: string }
@@ -11,7 +12,7 @@ export function SeasonTable({ events, labels }: { events: NonNullable<Robot['eve
     // nowrap values + min-width: at 390px the record and header cells stay on one line and the table scrolls instead of breaking
     <div>
       {/* same heading as the "Sezon ödülleri" column so the two columns line up */}
-      <h2 className="sec-title mb-8">{labels.title}</h2>
+      <SecTitle className="mb-8">{labels.title}</SecTitle>
       <div className="overflow-x-auto">
       <table className="w-full min-w-[480px] border-collapse text-left">
       <caption className="sr-only">{labels.title}</caption>

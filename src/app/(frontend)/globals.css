@@ -47,6 +47,7 @@
   .wm-brv::after { width: 0.3em; height: 0.11em; left: 0.2em; top: -0.13em; background: none; border: 0.06em solid currentColor; border-top: 0; box-sizing: border-box; border-radius: 0 0 0.3em 0.3em; }
   /* page names: A4 SPEED is wide, so they run smaller than the Anta size */
   .h1.wordmark { font-size: clamp(30px, 5.6vw, 92px); }
+  .sec-title.wordmark { font-family: var(--font-wordmark); font-weight: 700; font-synthesis: none; font-size: clamp(24px, 3vw, 44px); }
   .sec-title { @apply block text-[clamp(28px,3.4vw,52px)] uppercase leading-[1.05] tracking-[0.01em] text-white; font-family: var(--font-display); text-wrap: balance; }
   .zoom { @apply relative block overflow-hidden bg-panel; }
   /* Robot / product stage: no frame, just a soft backlight and a ground shadow so dark robots separate from the black page */

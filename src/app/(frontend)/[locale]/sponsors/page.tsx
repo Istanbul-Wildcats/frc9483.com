@@ -1,3 +1,4 @@
+import { SecTitle } from '@/components/site/SecTitle'
 import Link from 'next/link'
 
 import { PageHeading } from '@/components/site/PageHeading'
@@ -22,14 +23,14 @@ export default async function SponsorsPage({ params }: { params: Promise<{ local
     <>
       <PageHeading>{pg.heading}</PageHeading>
       <section className="wrap">
-        <h2 className="sec-title mb-10">{d.activeSponsors}</h2>
+        <SecTitle className="mb-10">{d.activeSponsors}</SecTitle>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] sm:gap-x-2 sm:gap-y-6">
           {active.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
         </div>
       </section>
       {past.length > 0 && pg.show('sponsorsPast') && (
         <section className="wrap pt-20">
-          <h2 className="sec-title mb-10">{d.pastSponsors}</h2>
+          <SecTitle className="mb-10">{d.pastSponsors}</SecTitle>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] sm:gap-x-2 sm:gap-y-6">
             {past.map((s) => <SponsorTile key={s.id} sponsor={s} newTab={d.newTab} />)}
           </div>
