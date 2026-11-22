@@ -8,9 +8,10 @@ const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
   images: {
-    // AVIF/WebP at higher quality: the originals are already JPEG-compressed, so the default 75 compounds the softness
     formats: ['image/avif', 'image/webp'],
-    qualities: [75, 90],
+    qualities: [75],
+    // 3840 dropped: the full-bleed hero was 488 KB AVIF on retina laptops; capped at 2048 it is 88 KB
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     // optimized variants stay cached for a year (uploads get new file names, so nothing goes stale)
     minimumCacheTTL: 60 * 60 * 24 * 365,
     remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],

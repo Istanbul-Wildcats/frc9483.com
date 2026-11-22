@@ -1,8 +1,5 @@
-import { Roboto } from 'next/font/google'
-
-// Same typeface and metrics The Blue Alliance uses for its team-page banners (tba_combined_style .banner)
-const roboto = Roboto({ subsets: ['latin', 'latin-ext'], weight: ['400', '700'], style: ['normal', 'italic'] })
-
+// Roboto used to be loaded just for these pennants (~100 KB of font on the home page);
+// the body font already ships bold + italic, so the banners inherit it.
 type Award = { id?: string | null; event: string; title: string; banner?: boolean | null; season?: number }
 
 /** TBA-style award name: "Regional Winner(s)" -> "Winner" */
@@ -13,7 +10,7 @@ export function AwardBanners({ awards, season, className = '' }: { awards: Award
   const shown = awards.filter((a) => a.banner)
   if (!shown.length) return null
   return (
-    <ul lang="en" className={`${roboto.className} flex flex-wrap gap-x-4 gap-y-0 text-[14px] leading-[1.2] ${className}`}>
+    <ul lang="en" className={`flex flex-wrap gap-x-4 gap-y-0 text-[14px] leading-[1.2] ${className}`}>
       {shown.map((a, i) => {
         const name = shortTitle(a.title)
         const event = `${a.season ?? season} ${a.event}`

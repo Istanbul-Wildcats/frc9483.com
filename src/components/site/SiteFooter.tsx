@@ -10,7 +10,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
     <footer className="rule pt-20 pb-10">
       <div className="wrap flex flex-col gap-14">
         <div className="flex flex-wrap items-end justify-between gap-8">
-          <span className="text-[clamp(40px,10vw,160px)] leading-[0.9] tracking-[-0.01em]">{s.footerTitle}</span>
+          <span className="text-[clamp(40px,10vw,160px)] leading-[0.92] tracking-[0.01em]" style={{ fontFamily: 'var(--font-display)' }}>{s.footerTitle}</span>
           <span className="mono text-sm">{s.footerSubtitle}</span>
         </div>
         <div className="grid gap-10 sm:grid-cols-2">

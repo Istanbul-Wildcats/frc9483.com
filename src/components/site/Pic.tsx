@@ -21,7 +21,7 @@ export function Pic({
       src={media.url}
       alt={media.alt}
       fill
-      quality={90}
+      quality={75}
       sizes={sizes}
       priority={priority}
       style={contain ? undefined : { objectPosition: `${media.focalX ?? 50}% ${media.focalY ?? 50}%` }}

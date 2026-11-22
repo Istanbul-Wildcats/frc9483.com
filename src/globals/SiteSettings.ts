@@ -44,6 +44,41 @@ export const SiteSettings: GlobalConfig = {
       ],
     },
     {
+      name: 'fonts',
+      type: 'group',
+      label: 'Fontlar',
+      admin: { description: 'Sitede kullanılan yazı tipleri. Yalnızca önceden yüklenmiş aileler seçilebilir; seçim tüm sitede anında uygulanır.' },
+      fields: [
+        {
+          name: 'bodyFont',
+          type: 'select',
+          label: 'Gövde fontu (nav, buton, metin)',
+          defaultValue: 'inter',
+          options: [
+            { label: 'Inter — nötr, en sakin', value: 'inter' },
+            { label: 'Barlow — önerilen: Anta ile aynı kare iskelet', value: 'barlow' },
+            { label: 'Archivo — kare ve sportif', value: 'archivo' },
+            { label: 'IBM Plex Sans — mühendislik havası', value: 'ibm-plex-sans' },
+            { label: 'Hanken Grotesk — yumuşak grotesk', value: 'hanken-grotesk' },
+            { label: 'Manrope — geometrik', value: 'manrope' },
+            { label: 'Space Grotesk — teknik, karakterli', value: 'space-grotesk' },
+          ],
+        },
+        {
+          name: 'displayFont',
+          type: 'select',
+          label: 'Başlık fontu (hero, sayfa başlıkları)',
+          defaultValue: 'anta',
+          options: [
+            { label: 'Anta — mevcut kimlik', value: 'anta' },
+            { label: 'Saira — geniş teknik', value: 'saira' },
+            { label: 'Space Grotesk', value: 'space-grotesk' },
+            { label: 'Archivo', value: 'archivo' },
+          ],
+        },
+      ],
+    },
+    {
       name: 'socials',
       type: 'array',
       fields: [
