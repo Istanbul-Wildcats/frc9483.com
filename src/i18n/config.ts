@@ -52,6 +52,6 @@ export const uiKeys = Object.keys(uiDefaults.tr) as UiKey[]
 
 /** Fallback page headings, used when a Pages entry has no heading. */
 export const pageHeadingDefaults: Record<Locale, Record<PageSlug, string>> = {
-  tr: { home: 'Ana sayfa', about: 'Hakkımızda', robots: 'Robotlar', awards: 'Ödüller', sponsors: 'Sponsorlar', join: 'Katıl', contact: 'İletişim', blog: 'Blog', resources: 'Kaynaklar', gallery: 'Galeri', shop: 'Mağaza' },
+  tr: { home: 'Ana sayfa', about: 'Hakkımızda', robots: 'Robotlar', awards: 'Ödüller', sponsors: 'Sponsorlarımız', join: 'Katıl', contact: 'İletişim', blog: 'Blog', resources: 'Kaynaklar', gallery: 'Galeri', shop: 'Mağaza' },
   en: { home: 'Home', about: 'About', robots: 'Robots', awards: 'Awards', sponsors: 'Sponsors', join: 'Join', contact: 'Contact', blog: 'Blog', resources: 'Resources', gallery: 'Gallery', shop: 'Shop' },
 }

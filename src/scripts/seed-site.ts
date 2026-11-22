@@ -320,7 +320,7 @@ const run = async () => {
     links: [
       ['/about', 'Hakkımızda', 'About'], ['/robots', 'Robotlar', 'Robots'], ['/awards', 'Ödüller', 'Awards'],
       ['/blog', 'Blog', 'Blog'], ['/gallery', 'Galeri', 'Gallery'], ['/shop', 'Mağaza', 'Shop'],
-      ['/sponsors', 'Sponsorlar', 'Sponsors'], ['/resources', 'Kaynaklar', 'Resources'], ['/contact', 'İletişim', 'Contact'],
+      ['/sponsors', 'Sponsorlarımız', 'Sponsors'], ['/resources', 'Kaynaklar', 'Resources'], ['/contact', 'İletişim', 'Contact'],
     ].map(([href, tr, en]) => ({ href, label: l === 'tr' ? tr : en })),
   }))
 
