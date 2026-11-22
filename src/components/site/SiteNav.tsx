@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { buttonVariants } from '@/components/ui/button'
@@ -10,7 +9,6 @@ import { MobileMenu } from './MobileMenu'
 
 export async function SiteNav({ locale }: { locale: Locale }) {
   const [nav, d, blogOpen] = await Promise.all([global('navigation', locale), getT(locale), hasPosts()])
-  const logo = typeof nav.logo === 'object' ? nav.logo : null
   const links = (nav.links ?? []).filter((l) => blogOpen || l.href !== '/blog').map((l) => ({ id: l.id, label: l.label, href: `/${locale}${l.href}` }))
   const join = (
     <Link href={`/${locale}/join`} className={buttonVariants({ size: 'sm' })}>
@@ -20,8 +18,9 @@ export async function SiteNav({ locale }: { locale: Locale }) {
   return (
     <header className="relative">
       <div className="wrap flex items-center justify-between gap-6 py-4">
-        <Link href={`/${locale}`} aria-label="Overcharge">
-          {logo?.url && <Image src={logo.url} alt={logo.alt} width={Math.round(((logo.width ?? 1) / (logo.height ?? 1)) * 36)} height={36} priority unoptimized className="h-8 w-auto md:h-9" />}
+        {/* wordmark instead of a bitmap logo: always sharp, same white as the old logo */}
+        <Link href={`/${locale}`} aria-label="Overcharge 9483" className="wordmark text-[clamp(40px,5vw,56px)] leading-none text-white transition-opacity hover:opacity-80">
+          9483
         </Link>
         <nav aria-label="Main" className="hidden flex-wrap items-center justify-end gap-x-7 xl:flex">
           {links.map((l) => (
