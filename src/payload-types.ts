@@ -1173,7 +1173,7 @@ export interface UiText {
    */
   cadView?: string | null;
   /**
-   * Varsayılan: Sezon dışı robotlar
+   * Varsayılan: Off Season Robotları
    */
   offSeasonRobots?: string | null;
   updatedAt?: string | null;
