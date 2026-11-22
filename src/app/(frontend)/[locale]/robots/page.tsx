@@ -40,7 +40,7 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
         className="robot-grid wrap gap-y-16 pb-36"
         style={{ '--robot-cols': cols, maxWidth: season.length > 3 && season.length < 6 ? cols * 450 + 88 : undefined } as React.CSSProperties}
       >
-        {season.map(card)}
+        {season.map((r) => card(r))}
       </section>
       {offSeason.length > 0 && (
         <>
