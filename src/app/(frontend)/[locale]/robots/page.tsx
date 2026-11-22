@@ -24,8 +24,9 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
   const cols = season.length >= 6 ? 3 : Math.max(1, season.length)
   // off-season cards stay tile-sized like the main grid: always 3 tracks (a single robot fills one third, like a normal robot card)
   const offCols = 3
-  const card = (r: (typeof robots)[number]) => (
-    <article key={r.id} className="flex flex-col items-center gap-6 text-center">
+  // 1 robot → centered in the 3-track area; 2 → fill from the left; 3+ → left-aligned rows
+  const card = (r: (typeof robots)[number], extra = '') => (
+    <article key={r.id} className={`flex flex-col items-center gap-6 text-center ${extra}`}>
       <Link href={`/${l}/robots/${r.slug}`} className="zoom h-[220px] md:h-[400px] w-full bg-panel"><Pic media={r.image} contain sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" /></Link>
       <span className="mono">{r.season}</span>
       <h2 className="h2">{r.name}</h2>
@@ -47,7 +48,7 @@ export default async function RobotsPage({ params }: { params: Promise<{ locale:
             <h2 className="mono mb-10 block">{d.offSeasonRobots}</h2>
           </section>
           <section className="robot-grid wrap gap-y-16 pb-36" style={{ '--robot-cols': offCols } as React.CSSProperties}>
-            {offSeason.map(card)}
+            {offSeason.map((r) => card(r, offSeason.length === 1 ? 'md:col-start-2' : ''))}
           </section>
         </>
       )}
