@@ -1,6 +1,7 @@
 import * as migration_20261121_212104_baseline from './20261121_212104_baseline';
 import * as migration_20261122_151926_add_cad_image from './20261122_151926_add_cad_image';
 import * as migration_20261122_201022_add_off_season from './20261122_201022_add_off_season';
+import * as migration_20261122_204500_add_offseason_ui_text from './20261122_204500_add_offseason_ui_text';
 import * as migration_20261122_155900_add_chief_delphi from './20261122_155900_add_chief_delphi';
 import * as migration_20261122_161200_backfill_drift from './20261122_161200_backfill_drift';
 
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20261122_201022_add_off_season.up,
     down: migration_20261122_201022_add_off_season.down,
     name: '20261122_201022_add_off_season'
+  },
+  {
+    up: migration_20261122_204500_add_offseason_ui_text.up,
+    down: migration_20261122_204500_add_offseason_ui_text.down,
+    name: '20261122_204500_add_offseason_ui_text'
   },
 ];
